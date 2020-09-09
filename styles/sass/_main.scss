@@ -3,7 +3,7 @@ main {
     padding: 40px 0;
 }
 .goalImageContainer {
-    width: 432px;
+    width: 480px;
     border: 4px solid white;
     box-shadow: 4px 4px $secondary;
     border-radius: 10px 10px;
@@ -14,4 +14,16 @@ main {
     margin-top: 40px;
     text-align: center;
     font-size: 4rem;
+}
+
+//////////////////////
+//main media queries//
+//////////////////////
+
+//main DESKTOP @ wrapper stop width//
+@media (max-width: 1500px) {
+    .goalImageContainer {
+        @include variableWidth(240, 320, 480, 1500);
+    }
+
 }
