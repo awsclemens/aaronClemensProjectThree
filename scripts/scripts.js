@@ -23,10 +23,10 @@ photoPuzzle.randomIndex = function(array) {
     return array[randomNum];
 }
 
-// call our randomIndex helper method and save it to a variable
+// call our randomIndex helper method on photoIdArray and save it to a variable
 const chosenPhoto = photoPuzzle.randomIndex(photoPuzzle.photoIdArray);
 
-// add our chosen photo's id to the picsum url and save as propery in namespace
+// add our chosen photo's id to the picsum url and save as property in namespace
 photoPuzzle.photoUrl = `https://picsum.photos/id/${chosenPhoto.id}/480/480`
 
 // set the goal image and its alt text

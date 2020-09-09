@@ -1,7 +1,7 @@
 footer {
     border: 1px solid black;
     padding: 10px 0;
-    @include variableFontSize(16, 320, 22, 1500);
+    font-size: 2.2rem;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -15,8 +15,8 @@ footer {
 ////////////////////////
 
 //footer DESKTOP @ wrapper stop width//
-@media (min-width: 1500px) {
+@media (max-width: 1500px) {
     footer {
-        font-size: 2.2rem;
+        @include variableFontSize(16, 320, 22, 1500);
     }
 }

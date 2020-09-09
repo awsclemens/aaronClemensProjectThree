@@ -255,6 +255,12 @@ section {
   margin: 0 auto;
 }
 
+@media (max-width: 480px) {
+  .wrapper {
+    width: 95%;
+  }
+}
+
 header {
   height: 10vh;
   max-height: 95px;
@@ -275,17 +281,23 @@ main {
 }
 
 .goalImageContainer {
-  width: 384px;
+  width: 432px;
   border: 4px solid white;
   box-shadow: 4px 4px #2f4f4f;
   border-radius: 10px 10px;
   overflow: hidden;
 }
 
+.results {
+  margin-top: 40px;
+  text-align: center;
+  font-size: 4rem;
+}
+
 footer {
   border: 1px solid black;
   padding: 10px 0;
-  font-size: calc((16/10 * 1rem) + (100vw - (320*1px))*((22 - 16)/(1500 - 320)));
+  font-size: 2.2rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -294,8 +306,8 @@ footer {
   text-shadow: 1px 1px #d87093;
 }
 
-@media (min-width: 1500px) {
+@media (max-width: 1500px) {
   footer {
-    font-size: 2.2rem;
+    font-size: calc((16/10 * 1rem) + (100vw - (320*1px))*((22 - 16)/(1500 - 320)));
   }
 }
