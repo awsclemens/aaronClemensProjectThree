@@ -2,9 +2,9 @@
 const $goalImage = $('.goalImageContainer img');
 
 // namespace object //
-const photoPuzzle = {};
+const myPuzzle = {};
 
-photoPuzzle.photoIdArray = [
+myPuzzle.photoIdArray = [
     {id: 1, alt: "Man using a laptop on a wooden slatted table, seen from over his left shoulder"},
     {id: 1047, alt: "View down a concrete alley in a city, sided by red bricked walls on overcast day"},
     {id: 1059, alt: "Wood slatted wall with photographs, a suit and paddle hung on it, all above a shelf with folded clothes"},
@@ -18,31 +18,31 @@ photoPuzzle.photoIdArray = [
 ];
     
 // helper methods
-photoPuzzle.randomIndex = function(array) {
+myPuzzle.randomIndex = function(array) {
     const randomNum = Math.floor(Math.random() * array.length);
     return array[randomNum];
 }
 
 // call our randomIndex helper method on photoIdArray and save it to a variable
-const chosenPhoto = photoPuzzle.randomIndex(photoPuzzle.photoIdArray);
+const chosenPhoto = myPuzzle.randomIndex(myPuzzle.photoIdArray);
 
 // add our chosen photo's id to the picsum url and save as property in namespace
-photoPuzzle.photoUrl = `https://picsum.photos/id/${chosenPhoto.id}/480/480`
+myPuzzle.photoUrl = `https://picsum.photos/id/${chosenPhoto.id}/480/480`
 
 // set the goal image and its alt text
-photoPuzzle.setGoalImage = function() {
-    $goalImage.attr('src',`${photoPuzzle.photoUrl}`).attr('alt',`${chosenPhoto.alt}`);
+myPuzzle.setGoalImage = function() {
+    $goalImage.attr('src',`${myPuzzle.photoUrl}`).attr('alt',`${chosenPhoto.alt}`);
 }
 
 /////////////////////////////////////////////////////////////////////
 // define init method
-photoPuzzle.init = function() {
+myPuzzle.init = function() {
     console.log("initialized");
-    photoPuzzle.setGoalImage();
+    myPuzzle.setGoalImage();
 
 }
 
 // document ready
 $(document).ready(function() {
-    photoPuzzle.init();
+    myPuzzle.init();
 });
