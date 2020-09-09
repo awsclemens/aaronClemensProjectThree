@@ -1,0 +1,11 @@
+// main styles
+main {
+    padding: 40px 0;
+}
+.goalImageContainer {
+    width: 384px;
+    border: 4px solid white;
+    box-shadow: 4px 4px $secondary;
+    border-radius: 10px 10px;
+    overflow: hidden;
+}
