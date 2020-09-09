@@ -37,7 +37,7 @@ main {
 //main DESKTOP @ wrapper stop width//
 @media (max-width: 1500px) {
     .goalImageContainer {
-        @include variableWidth(180, 320, 360, 1500);
+        @include variableWidth(240, 320, 480, 1500);
     }
 
     .gameBoard {
@@ -46,8 +46,8 @@ main {
     }
 }
 
-//main PHONE//
-@media (max-width: 940px) {
+//main TABLET SMALL DESKTOP//
+@media (max-width: 1040px) {
     main {
         padding: 20px 0;
     }
@@ -62,5 +62,20 @@ main {
 
     .results {
         margin-top: 20px;
+    }
+}
+
+//main PHONE//
+@media (max-width: 480px) {
+    main {
+        padding: 10px 0;
+    }
+
+    .goalImageContainer {
+        margin-bottom: 10px;
+    }
+
+    .results {
+        margin-top: 10px;
     }
 }
