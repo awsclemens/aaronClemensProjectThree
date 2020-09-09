@@ -24,14 +24,14 @@ myPuzzle.randomIndex = function(array) {
 }
 
 // call our randomIndex helper method on photoIdArray and save it to a variable
-const chosenPhoto = myPuzzle.randomIndex(myPuzzle.photoIdArray);
+myPuzzle.chosenPhoto = myPuzzle.randomIndex(myPuzzle.photoIdArray);
 
 // add our chosen photo's id to the picsum url and save as property in namespace
-myPuzzle.photoUrl = `https://picsum.photos/id/${chosenPhoto.id}/480/480`
+myPuzzle.photoUrl = `https://picsum.photos/id/${myPuzzle.chosenPhoto.id}/480/480`
 
 // set the goal image and its alt text
 myPuzzle.setGoalImage = function() {
-    $goalImage.attr('src',`${myPuzzle.photoUrl}`).attr('alt',`${chosenPhoto.alt}`);
+    $goalImage.attr('src',`${myPuzzle.photoUrl}`).attr('alt',`${myPuzzle.chosenPhoto.alt}`);
 }
 
 /////////////////////////////////////////////////////////////////////
