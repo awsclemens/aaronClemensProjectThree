@@ -2,10 +2,24 @@
 main {
     padding: 40px 0;
 }
+
+.gameContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 .goalImageContainer {
     width: 480px;
     border: 4px solid white;
     box-shadow: 4px 4px $secondary;
+    border-radius: 10px 10px;
+    overflow: hidden;
+}
+
+.gameBoard {
+    width: 600px;
+    height: 600px;
+    border: 2px solid black;
     border-radius: 10px 10px;
     overflow: hidden;
 }
@@ -23,7 +37,30 @@ main {
 //main DESKTOP @ wrapper stop width//
 @media (max-width: 1500px) {
     .goalImageContainer {
-        @include variableWidth(240, 320, 480, 1500);
+        @include variableWidth(180, 320, 360, 1500);
     }
 
+    .gameBoard {
+        @include variableWidth(300, 320, 600, 1500);
+        @include variableHeight(300, 320, 600, 1500);
+    }
+}
+
+//main PHONE//
+@media (max-width: 940px) {
+    main {
+        padding: 20px 0;
+    }
+
+    .goalImageContainer {
+        margin-bottom: 20px;
+    }
+
+    .gameContainer {
+        flex-direction: column;
+    }
+
+    .results {
+        margin-top: 20px;
+    }
 }

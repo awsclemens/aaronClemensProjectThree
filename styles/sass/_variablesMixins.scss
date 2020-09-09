@@ -22,3 +22,9 @@ $secondary: #2f4f4f;
 @mixin variableWidth($startWidth, $startScreenWidth, $endWidth, $endScreenWidth) {
     width: calc((#{$startWidth}/10 * 1rem) + (100vw - (#{$startScreenWidth}*1px))*((#{$endWidth} - #{$startWidth})/(#{$endScreenWidth} - #{$startScreenWidth})));
 }
+
+
+// variable height
+@mixin variableHeight($startWidth, $startScreenWidth, $endWidth, $endScreenWidth) {
+    height: calc((#{$startWidth}/10 * 1rem) + (100vw - (#{$startScreenWidth}*1px))*((#{$endWidth} - #{$startWidth})/(#{$endScreenWidth} - #{$startScreenWidth})));
+}
