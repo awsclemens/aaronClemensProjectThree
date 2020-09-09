@@ -1,0 +1,17 @@
+// header styles
+
+header {
+    height: 10vh;
+    max-height: 95px;
+    min-height: 50px;
+    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+h1 {
+    font-size: 4rem;
+    color: white;
+    text-shadow: 3px 2px 1px darkslategrey;
+}
