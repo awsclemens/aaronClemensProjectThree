@@ -34,30 +34,49 @@ main {
 //main media queries//
 //////////////////////
 
-//main DESKTOP @ wrapper stop width//
+// main DESKTOP @ wrapper stop width //
 @media (max-width: 1500px) {
     .goalImageContainer {
-        @include variableWidth(240, 320, 480, 1500);
+        @include variableWidth(288, 941, 480, 1500);
     }
 
     .gameBoard {
-        @include variableWidth(300, 320, 600, 1500);
-        @include variableHeight(300, 320, 600, 1500);
+        @include variableWidth(360, 941, 600, 1500);
+        @include variableHeight(360, 941, 600, 1500);
     }
 }
 
-//main TABLET SMALL DESKTOP//
-@media (max-width: 1040px) {
+// main TABLET TO SMALL DESKTOP //
+@media (max-width: 940px) {
+    .gameContainer {
+        flex-direction: column;
+    }
+
+    .goalImageContainer {
+        width: 336px;
+        margin-bottom: 40px;
+    }
+
+    .gameBoard {
+        width: 420px;
+        height: 420px;
+    }
+}
+
+// main PHONE TO TABLET //
+@media (max-width: 768px) {
     main {
         padding: 20px 0;
     }
 
     .goalImageContainer {
         margin-bottom: 20px;
+        @include variableWidth(288, 481, 336, 768);
     }
 
-    .gameContainer {
-        flex-direction: column;
+    .gameBoard {
+        @include variableWidth(360, 481, 420, 768);
+        @include variableHeight(360, 481, 420, 768);
     }
 
     .results {
@@ -65,17 +84,23 @@ main {
     }
 }
 
-//main PHONE//
+// main PHONE //
 @media (max-width: 480px) {
     main {
-        padding: 10px 0;
+        padding: 15px;
     }
 
     .goalImageContainer {
-        margin-bottom: 10px;
+        margin-bottom: 15px;
+        @include variableWidth(240, 320, 288, 480);
+    }
+
+    .gameBoard {
+        @include variableWidth(300, 320, 360, 480);
+        @include variableHeight(300, 320, 360, 480);
     }
 
     .results {
-        margin-top: 10px;
+        margin-top: 15px;
     }
 }

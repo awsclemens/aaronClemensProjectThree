@@ -250,15 +250,9 @@ section {
 }
 
 .wrapper {
-  width: 85%;
+  width: 80%;
   max-width: 1200px;
   margin: 0 auto;
-}
-
-@media (max-width: 1500px) {
-  .wrapper {
-    width: 85%;
-  }
 }
 
 @media (max-width: 480px) {
@@ -268,18 +262,31 @@ section {
 }
 
 header {
-  height: 10vh;
-  max-height: 95px;
-  min-height: 50px;
+  margin-top: 40px;
   display: flex;
   justify-content: center;
   align-items: flex-end;
 }
 
 h1 {
-  font-size: 4rem;
+  font-size: 5rem;
   color: white;
   text-shadow: 3px 2px 1px #2f4f4f;
+}
+
+@media (max-width: 768px) {
+  header {
+    margin-top: 20px;
+  }
+  h1 {
+    font-size: calc((34/10 * 1rem) + (100vw - (320*1px))*((50 - 34)/(768 - 320)));
+  }
+}
+
+@media (max-width: 480px) {
+  header {
+    margin-top: 15px;
+  }
 }
 
 main {
@@ -316,23 +323,39 @@ main {
 
 @media (max-width: 1500px) {
   .goalImageContainer {
-    width: calc((240/10 * 1rem) + (100vw - (320*1px))*((480 - 240)/(1500 - 320)));
+    width: calc((288/10 * 1rem) + (100vw - (941*1px))*((480 - 288)/(1500 - 941)));
   }
   .gameBoard {
-    width: calc((300/10 * 1rem) + (100vw - (320*1px))*((600 - 300)/(1500 - 320)));
-    height: calc((300/10 * 1rem) + (100vw - (320*1px))*((600 - 300)/(1500 - 320)));
+    width: calc((360/10 * 1rem) + (100vw - (941*1px))*((600 - 360)/(1500 - 941)));
+    height: calc((360/10 * 1rem) + (100vw - (941*1px))*((600 - 360)/(1500 - 941)));
   }
 }
 
-@media (max-width: 1040px) {
+@media (max-width: 940px) {
+  .gameContainer {
+    flex-direction: column;
+  }
+  .goalImageContainer {
+    width: 336px;
+    margin-bottom: 40px;
+  }
+  .gameBoard {
+    width: 420px;
+    height: 420px;
+  }
+}
+
+@media (max-width: 768px) {
   main {
     padding: 20px 0;
   }
   .goalImageContainer {
     margin-bottom: 20px;
+    width: calc((288/10 * 1rem) + (100vw - (481*1px))*((336 - 288)/(768 - 481)));
   }
-  .gameContainer {
-    flex-direction: column;
+  .gameBoard {
+    width: calc((360/10 * 1rem) + (100vw - (481*1px))*((420 - 360)/(768 - 481)));
+    height: calc((360/10 * 1rem) + (100vw - (481*1px))*((420 - 360)/(768 - 481)));
   }
   .results {
     margin-top: 20px;
@@ -341,13 +364,18 @@ main {
 
 @media (max-width: 480px) {
   main {
-    padding: 10px 0;
+    padding: 15px;
   }
   .goalImageContainer {
-    margin-bottom: 10px;
+    margin-bottom: 15px;
+    width: calc((240/10 * 1rem) + (100vw - (320*1px))*((288 - 240)/(480 - 320)));
+  }
+  .gameBoard {
+    width: calc((300/10 * 1rem) + (100vw - (320*1px))*((360 - 300)/(480 - 320)));
+    height: calc((300/10 * 1rem) + (100vw - (320*1px))*((360 - 300)/(480 - 320)));
   }
   .results {
-    margin-top: 10px;
+    margin-top: 15px;
   }
 }
 

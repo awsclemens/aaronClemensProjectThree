@@ -25,7 +25,7 @@ section {
 }
 
 .wrapper {
-    width: 85%;
+    width: 80%;
     max-width: 1200px;
     margin: 0 auto;
 }
@@ -34,14 +34,7 @@ section {
 // global media queries //
 //////////////////////////
 
-// global DESKTOP
-@media (max-width: 1500px) {
-    .wrapper {
-        width: 85%;
-    }
-}
-
-// global PHONE
+// global PHONE //
 @media (max-width: 480px) {
     .wrapper {
         width: 95%;

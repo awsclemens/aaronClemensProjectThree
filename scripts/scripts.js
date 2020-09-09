@@ -18,7 +18,10 @@ myPuzzle.photoIdArray = [
     {id: 397, alt: "many colourful houses adorning steep oceanside cliffs, on a sunny day"},
     {id: 111, alt: "close up of an old car with a California 1938 license plate on front right bumper that says farmer boy, a white stone building in background"}
 ];
-    
+
+// set how many tiles wide our game will be
+myPuzzle.tilesWide = 3;
+
 // helper methods
 myPuzzle.randomIndex = function(array) {
     const randomNum = Math.floor(Math.random() * array.length);
@@ -29,12 +32,18 @@ myPuzzle.randomIndex = function(array) {
 myPuzzle.chosenPhoto = myPuzzle.randomIndex(myPuzzle.photoIdArray);
 
 // add our chosen photo's id to the picsum url and save as property in namespace
-myPuzzle.photoUrl = `https://picsum.photos/id/${myPuzzle.chosenPhoto.id}/480/480`
-
+myPuzzle.photoUrl = `https://picsum.photos/id/${myPuzzle.chosenPhoto.id}/600/600`;
 
 // set the goal image and its alt text
 myPuzzle.setGoalImage = function() {
+    console.log('set goal image');
     $goalImage.attr('src',`${myPuzzle.photoUrl}`).attr('alt',`${myPuzzle.chosenPhoto.alt}`);
+}
+
+// create the game tiles, position them, and position their background photo
+myPuzzle.buildGame = function() {
+    console.log('build game');
+    
 }
 
 /////////////////////////////////////////////////////////////////////
@@ -42,6 +51,7 @@ myPuzzle.setGoalImage = function() {
 myPuzzle.init = function() {
     console.log("initialized");
     myPuzzle.setGoalImage();
+    myPuzzle.buildGame();
 }
 
 // document ready

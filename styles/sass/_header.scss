@@ -1,16 +1,32 @@
 // header styles
 
 header {
-    height: 10vh;
-    max-height: 95px;
-    min-height: 50px;
+    margin-top: 40px;
     display: flex;
     justify-content: center;
     align-items: flex-end;
 }
 
 h1 {
-    font-size: 4rem;
+    font-size: 5rem;
     color: white;
     text-shadow: 3px 2px 1px $secondary;
+}
+
+// header PHONE TO TABLET //
+@media (max-width: 768px) {
+    header {
+        margin-top: 20px;
+    }
+
+    h1 {
+        @include variableFontSize(34, 320, 50, 768);
+    }
+}
+
+// header PHONE //
+@media (max-width: 480px) {
+    header {
+        margin-top: 15px;
+    }
 }
