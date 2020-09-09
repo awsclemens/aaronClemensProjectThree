@@ -229,7 +229,7 @@ html {
 }
 
 body {
-  background: palevioletred;
+  background: #d87093;
   font-family: "Kite One", sans-serif;
   font-size: 1.6rem;
 }
@@ -267,5 +267,23 @@ header {
 h1 {
   font-size: 4rem;
   color: white;
-  text-shadow: 3px 2px 1px darkslategrey;
+  text-shadow: 3px 2px 1px #2f4f4f;
+}
+
+footer {
+  border: 1px solid black;
+  padding: 10px 0;
+  font-size: calc((16/10 * 1rem) + (100vw - (320*1px))*((22 - 16)/(1500 - 320)));
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #2f4f4f;
+  color: white;
+  text-shadow: 1px 1px #d87093;
+}
+
+@media (min-width: 1500px) {
+  footer {
+    font-size: 2.2rem;
+  }
 }
