@@ -224,6 +224,26 @@ template {
   overflow: hidden;
 }
 
+html {
+  font-size: 62.5%;
+}
+
 body {
   background: lightpink;
+  font-family: "Kite One", sans-serif;
+  font-size: 1.6rem;
+}
+
+img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+h1,
+div,
+p,
+section {
+  padding: 0;
+  margin: 0;
 }
