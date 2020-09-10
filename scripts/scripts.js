@@ -1,5 +1,6 @@
 // cached selectors
 const $goalImage = $('.goalImageContainer img');
+const $gameBoard = $('.gameBoard');
 
 // namespace object //
 const myPuzzle = {};
@@ -19,7 +20,7 @@ myPuzzle.photoIdArray = [
     {id: 111, alt: "close up of an old car with a California 1938 license plate on front right bumper that says farmer boy, a white stone building in background"}
 ];
 
-// set how many tiles wide our game will be
+// set how many tiles wide our game will be: WILL BE USER CHOICE IN FUTURE
 myPuzzle.tilesWide = 3;
 
 // helper methods
@@ -40,11 +41,40 @@ myPuzzle.setGoalImage = function() {
     $goalImage.attr('src',`${myPuzzle.photoUrl}`).attr('alt',`${myPuzzle.chosenPhoto.alt}`);
 }
 
+// display tiles as li's to the ol with class gameBoard
+myPuzzle.displayTiles = function() {
+    for (i = 1; i <= myPuzzle.tilesWide**2; i++) {
+        // classes to add to the tiles
+        const tileClasses = `tile tile${i} slot${i}`;
+        // top position offset relative to game board for each tile
+        const tileTop = `${0 + (myPuzzle.tileSize)*(Math.floor((i - 1) / myPuzzle.tilesWide))}px`;
+        // left position offset of each tile
+        const tileLeft = `${0 + (myPuzzle.tileSize)*((i - 1) % myPuzzle.tilesWide)}px`;
+        // scale the background image based on how many tiles wide the game is
+        const tileBackgroundSize = `${100 * myPuzzle.tilesWide}%`;
+        // X axis position of the tiles' background image (-2 to account for 1px white border)
+        const tileBackgroundPosX = `${0 - (myPuzzle.tileSize - 2)*((i - 1) % myPuzzle.tilesWide)}px`;
+        // Y axis position of the tiles' background image (-2 to account for 1px white border)
+        const tileBackgroundPosY = `${0 - (myPuzzle.tileSize - 2)*(Math.floor((i - 1) / myPuzzle.tilesWide))}px`;
+        // the list item to create each iteration
+        const listItem = $('<li>').addClass(tileClasses).val(`${i}`).css({"height":`${myPuzzle.tileSize}`,"width":`${myPuzzle.tileSize}`,"top":`${tileTop}`,"left":`${tileLeft}`,"background-image":`url(${myPuzzle.photoUrl})`,"background-size":`${tileBackgroundSize}`,"background-position":`${tileBackgroundPosX} ${tileBackgroundPosY}`}).text(`${i}`);
+        // add and display tiles to the DOM
+        $gameBoard.append(listItem);
+    }
+}
+
 // create the game tiles, position them, and position their background photo
 myPuzzle.buildGame = function() {
     console.log('build game');
-    
+    // get the current width of the game board
+    myPuzzle.gameBoardSize = parseInt($gameBoard.css('width'));
+    console.log(`game size = ${myPuzzle.gameBoardSize}px`);
+    // divide game board width by how many tiles wide the game is to get tile width
+    myPuzzle.tileSize = myPuzzle.gameBoardSize / myPuzzle.tilesWide;
+    console.log(`tiles will be this wide: ${myPuzzle.tileSize}px`);
+    myPuzzle.displayTiles();
 }
+
 
 /////////////////////////////////////////////////////////////////////
 // define init method

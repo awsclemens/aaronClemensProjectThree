@@ -249,6 +249,10 @@ section {
   margin: 0;
 }
 
+ol {
+  list-style: none;
+}
+
 .wrapper {
   width: 80%;
   max-width: 1200px;
@@ -313,6 +317,24 @@ main {
   border: 2px solid black;
   border-radius: 10px 10px;
   overflow: hidden;
+  position: relative;
+}
+
+.tile {
+  border: 1px solid white;
+  position: absolute;
+  transition: all 0.3s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 3rem;
+  text-shadow: 2px 2px 2px #2f4f4f;
+}
+
+.emptyTile {
+  border: 1px solid white;
+  position: absolute;
 }
 
 .results {
