@@ -23,6 +23,17 @@ myPuzzle.photoIdArray = [
 // set how many tiles wide our game will be: WILL BE USER CHOICE IN FUTURE
 myPuzzle.tilesWide = 3;
 
+// the win condition
+myPuzzle.winCondition =""
+
+// fill in the win condition
+myPuzzle.createWinCondition = function() {
+    for (i = 1; i <= myPuzzle.tilesWide**2; i++) {
+        myPuzzle.winCondition = myPuzzle.winCondition + i;
+    }
+    console.log(`Win condition: ${myPuzzle.winCondition}`);
+}
+
 // helper methods
 myPuzzle.randomIndex = function(array) {
     const randomNum = Math.floor(Math.random() * array.length);
@@ -63,6 +74,11 @@ myPuzzle.displayTiles = function() {
     }
 }
 
+myPuzzle.displayEmpty = function() {
+    $(`.tile${myPuzzle.tilesWide**2}`).addClass("emptyTile").css("background-image","none").empty();
+    
+}
+
 // create the game tiles, position them, and position their background photo
 myPuzzle.buildGame = function() {
     console.log('build game');
@@ -73,6 +89,7 @@ myPuzzle.buildGame = function() {
     myPuzzle.tileSize = myPuzzle.gameBoardSize / myPuzzle.tilesWide;
     console.log(`tiles will be this wide: ${myPuzzle.tileSize}px`);
     myPuzzle.displayTiles();
+    myPuzzle.displayEmpty();
 }
 
 
@@ -80,6 +97,7 @@ myPuzzle.buildGame = function() {
 // define init method
 myPuzzle.init = function() {
     console.log("initialized");
+    myPuzzle.createWinCondition();
     myPuzzle.setGoalImage();
     myPuzzle.buildGame();
 }

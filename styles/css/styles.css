@@ -329,12 +329,13 @@ main {
   align-items: center;
   color: white;
   font-size: 3rem;
-  text-shadow: 2px 2px 2px #2f4f4f;
+  text-shadow: 2px 2px black;
 }
 
 .emptyTile {
   border: 1px solid white;
   position: absolute;
+  background: #eec0d0;
 }
 
 .results {
