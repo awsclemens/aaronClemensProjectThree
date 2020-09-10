@@ -69,7 +69,7 @@ myPuzzle.getTileSize = function() {
     return myPuzzle.tileSize;
 }
 
-// display tiles as li's to the ol with class gameBoard
+// display tiles as li's in the ol with class gameBoard
 myPuzzle.displayTiles = function() {
     for (i = 1; i <= myPuzzle.tilesWide**2; i++) {
         // use the scramble order array to properly scramble the tiles
@@ -94,6 +94,7 @@ myPuzzle.displayTiles = function() {
 }
 
 myPuzzle.displayEmpty = function() {
+    // select the last tile and add emptyTile class, and get rid of background image
     $(`.tile${myPuzzle.tilesWide**2}`).addClass("emptyTile").css("background-image","none").empty();
     
 }
@@ -116,6 +117,10 @@ myPuzzle.windowResize = function() {
     $(window).on('resize', function() {
         myPuzzle.getGameBoardSize();
         myPuzzle.getTileSize();
+        // set new height and width
+        // set new positions
+        // set new background positions, tricky with the scrambleNum being used
+        
     });
 }
 
