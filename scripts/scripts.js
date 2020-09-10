@@ -34,6 +34,9 @@ myPuzzle.createWinCondition = function() {
     console.log(`Win condition: ${myPuzzle.winCondition}`);
 }
 
+// scramble order
+myPuzzle.scrambleOrder = [7, 3, 8, 1, 2, 5, 6, 4, 9];
+
 // helper methods
 myPuzzle.randomIndex = function(array) {
     const randomNum = Math.floor(Math.random() * array.length);
@@ -55,8 +58,10 @@ myPuzzle.setGoalImage = function() {
 // display tiles as li's to the ol with class gameBoard
 myPuzzle.displayTiles = function() {
     for (i = 1; i <= myPuzzle.tilesWide**2; i++) {
+        // use the scramble order array to properly scramble the tiles
+        const scrambleNum = myPuzzle.scrambleOrder[i - 1];
         // classes to add to the tiles
-        const tileClasses = `tile tile${i} slot${i}`;
+        const tileClasses = `tile tile${scrambleNum} slot${i}`;
         // top position offset relative to game board for each tile
         const tileTop = `${0 + (myPuzzle.tileSize)*(Math.floor((i - 1) / myPuzzle.tilesWide))}px`;
         // left position offset of each tile
@@ -64,11 +69,11 @@ myPuzzle.displayTiles = function() {
         // scale the background image based on how many tiles wide the game is
         const tileBackgroundSize = `${100 * myPuzzle.tilesWide}%`;
         // X axis position of the tiles' background image (-2 to account for 1px white border)
-        const tileBackgroundPosX = `${0 - (myPuzzle.tileSize - 2)*((i - 1) % myPuzzle.tilesWide)}px`;
+        const tileBackgroundPosX = `${0 - (myPuzzle.tileSize - 2)*((scrambleNum - 1) % myPuzzle.tilesWide)}px`;
         // Y axis position of the tiles' background image (-2 to account for 1px white border)
-        const tileBackgroundPosY = `${0 - (myPuzzle.tileSize - 2)*(Math.floor((i - 1) / myPuzzle.tilesWide))}px`;
+        const tileBackgroundPosY = `${0 - (myPuzzle.tileSize - 2)*(Math.floor((scrambleNum - 1) / myPuzzle.tilesWide))}px`;
         // the list item to create each iteration
-        const listItem = $('<li>').addClass(tileClasses).val(`${i}`).css({"height":`${myPuzzle.tileSize}`,"width":`${myPuzzle.tileSize}`,"top":`${tileTop}`,"left":`${tileLeft}`,"background-image":`url(${myPuzzle.photoUrl})`,"background-size":`${tileBackgroundSize}`,"background-position":`${tileBackgroundPosX} ${tileBackgroundPosY}`}).text(`${i}`);
+        const listItem = $('<li>').addClass(tileClasses).val(`${i}`).css({"height":`${myPuzzle.tileSize}`,"width":`${myPuzzle.tileSize}`,"top":`${tileTop}`,"left":`${tileLeft}`,"background-image":`url(${myPuzzle.photoUrl})`,"background-size":`${tileBackgroundSize}`,"background-position":`${tileBackgroundPosX} ${tileBackgroundPosY}`}).text(`${scrambleNum}`);
         // add and display tiles to the DOM
         $gameBoard.append(listItem);
     }
@@ -93,6 +98,8 @@ myPuzzle.buildGame = function() {
 }
 
 
+
+
 /////////////////////////////////////////////////////////////////////
 // define init method
 myPuzzle.init = function() {
@@ -100,6 +107,7 @@ myPuzzle.init = function() {
     myPuzzle.createWinCondition();
     myPuzzle.setGoalImage();
     myPuzzle.buildGame();
+    
 }
 
 // document ready
