@@ -55,6 +55,20 @@ myPuzzle.setGoalImage = function() {
     $goalImage.attr('src',`${myPuzzle.photoUrl}`).attr('alt',`${myPuzzle.chosenPhoto.alt}`);
 }
 
+// get the current game board size
+myPuzzle.getGameBoardSize = function() {
+    myPuzzle.gameBoardSize = parseInt($gameBoard.css('width'));
+    console.log(`game size = ${myPuzzle.gameBoardSize}px`);
+    return myPuzzle.gameBoardSize;
+}
+
+// get the current tile size
+myPuzzle.getTileSize = function() {
+    myPuzzle.tileSize = myPuzzle.gameBoardSize / myPuzzle.tilesWide;
+    console.log(`tiles will be this wide: ${myPuzzle.tileSize}px`);
+    return myPuzzle.tileSize;
+}
+
 // display tiles as li's to the ol with class gameBoard
 myPuzzle.displayTiles = function() {
     for (i = 1; i <= myPuzzle.tilesWide**2; i++) {
@@ -88,17 +102,22 @@ myPuzzle.displayEmpty = function() {
 myPuzzle.buildGame = function() {
     console.log('build game');
     // get the current width of the game board
-    myPuzzle.gameBoardSize = parseInt($gameBoard.css('width'));
-    console.log(`game size = ${myPuzzle.gameBoardSize}px`);
-    // divide game board width by how many tiles wide the game is to get tile width
-    myPuzzle.tileSize = myPuzzle.gameBoardSize / myPuzzle.tilesWide;
-    console.log(`tiles will be this wide: ${myPuzzle.tileSize}px`);
+    myPuzzle.getGameBoardSize();
+    // divide game board width by how many tiles wide the game is to get tile size
+    myPuzzle.getTileSize();
+    // disply all needed tiles
     myPuzzle.displayTiles();
+    // change last tile to empty
     myPuzzle.displayEmpty();
 }
 
-
-
+// event listener on window for resize, update the tile sizes and positioning
+myPuzzle.windowResize = function() {
+    $(window).on('resize', function() {
+        myPuzzle.getGameBoardSize();
+        myPuzzle.getTileSize();
+    });
+}
 
 /////////////////////////////////////////////////////////////////////
 // define init method
@@ -107,6 +126,7 @@ myPuzzle.init = function() {
     myPuzzle.createWinCondition();
     myPuzzle.setGoalImage();
     myPuzzle.buildGame();
+    myPuzzle.windowResize();
     
 }
 
