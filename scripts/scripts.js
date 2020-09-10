@@ -77,6 +77,8 @@ myPuzzle.displayTiles = function() {
         // classes to add to the tiles
         const tileClasses = `tile tile${scrambleNum} slot${i}`;
         // top position offset relative to game board for each tile
+
+        
         const tileTop = `${0 + (myPuzzle.tileSize)*(Math.floor((i - 1) / myPuzzle.tilesWide))}px`;
         // left position offset of each tile
         const tileLeft = `${0 + (myPuzzle.tileSize)*((i - 1) % myPuzzle.tilesWide)}px`;
