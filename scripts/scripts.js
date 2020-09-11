@@ -149,11 +149,12 @@ myPuzzle.buildGame = function() {
 }
 
 myPuzzle.getCurrentTileOrder = function() {
-    const currentTilesList = $('li').text();
-    for (i = 0; i < currentTilesList.length; i++) {
-        myPuzzle.currentTileOrder[i] = currentTilesList[i];
+    for (i = 1; i <= myPuzzle.currentTileOrder.length; i++) {
+        const tileSlot = $(`.slot${i}`).text();
+        console.log(tileSlot);
+        myPuzzle.currentTileOrder[i - 1] = tileSlot;
+        
     } 
-    console.log(`current tile order: ${myPuzzle.currentTileOrder}`);
 }
 
 // event listener on window for resize, update the tile sizes and positioning
