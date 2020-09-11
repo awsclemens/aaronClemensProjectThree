@@ -21,7 +21,7 @@ myPuzzle.photoIdArray = [
 ];
 
 // set how many tiles wide our game will be: WILL BE USER CHOICE IN FUTURE
-myPuzzle.tilesWide = 3;
+myPuzzle.tilesWide = 5;
 
 // the win condition
 myPuzzle.winCondition =""
@@ -39,9 +39,9 @@ myPuzzle.setCurrentTileOrder = function() {
     if (myPuzzle.tilesWide === 3) {
         myPuzzle.currentTileOrder = [4, 8, 3, 1, 6, 7, 5, 2, 9];
     } else if (myPuzzle.tilesWide === 4) {
-        myPuzzle.currentTileOrder = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
+        myPuzzle.currentTileOrder = [6, 10, 4, 14, 7, 12, 13, 5, 2, 11, 15, 1, 9, 3, 8, 16];
     } else if (myPuzzle.tilesWide === 5) {
-        myPuzzle.currentTileOrder = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25];
+        myPuzzle.currentTileOrder = [11, 1, 7, 4, 5, 6, 17, 2, 9, 10, 23, 13, 22, 14, 15, 21, 18, 3, 24, 19, 12, 8, 16, 20, 25];
     }
 }
 // myPuzzle.currentTileOrder = [7, 3, 8, 1, 2, 5, 6, 4, 9];
@@ -129,6 +129,10 @@ myPuzzle.displayEmpty = function() {
     
 }
 
+myPuzzle.setActiveTiles = function() {
+
+}
+
 // create the game tiles, position them, and position their background photo
 myPuzzle.buildGame = function() {
     console.log('build game');
@@ -140,6 +144,8 @@ myPuzzle.buildGame = function() {
     myPuzzle.displayTiles();
     // change last tile to empty
     myPuzzle.displayEmpty();
+    //set the active tiles
+    myPuzzle.setActiveTiles();
 }
 
 myPuzzle.getCurrentTileOrder = function() {
@@ -162,6 +168,19 @@ myPuzzle.windowResize = function() {
     });
 }
 
+myPuzzle.moveTiles = function() {
+    // on click of active tile,
+        // save position of clicked active tile
+        // save position of empty tile
+        // swap positions, value and slots
+        // remove all actives
+        // check win condition
+            // if won, add message to results
+            // otherwise add new actives
+
+}
+
+
 /////////////////////////////////////////////////////////////////////
 // define init method
 myPuzzle.init = function() {
@@ -170,8 +189,8 @@ myPuzzle.init = function() {
     myPuzzle.setGoalImage();
     myPuzzle.setCurrentTileOrder();
     myPuzzle.buildGame();
+    myPuzzle.moveTiles();
     myPuzzle.windowResize();
-    
 }
 
 // document ready
