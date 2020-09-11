@@ -35,7 +35,16 @@ myPuzzle.createWinCondition = function() {
 }
 
 // the current order of tiles, starts scrambled
-myPuzzle.currentTileOrder = [7, 3, 8, 1, 2, 5, 6, 4, 9];
+myPuzzle.setCurrentTileOrder = function() {
+    if (myPuzzle.tilesWide === 3) {
+        myPuzzle.currentTileOrder = [4, 8, 3, 1, 6, 7, 5, 2, 9];
+    } else if (myPuzzle.tilesWide === 4) {
+        myPuzzle.currentTileOrder = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
+    } else if (myPuzzle.tilesWide === 5) {
+        myPuzzle.currentTileOrder = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25];
+    }
+}
+// myPuzzle.currentTileOrder = [7, 3, 8, 1, 2, 5, 6, 4, 9];
 
 // helper methods
 myPuzzle.randomIndex = function(array) {
@@ -159,6 +168,7 @@ myPuzzle.init = function() {
     console.log("initialized");
     myPuzzle.createWinCondition();
     myPuzzle.setGoalImage();
+    myPuzzle.setCurrentTileOrder();
     myPuzzle.buildGame();
     myPuzzle.windowResize();
     
