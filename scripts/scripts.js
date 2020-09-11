@@ -34,8 +34,8 @@ myPuzzle.createWinCondition = function() {
     console.log(`Win condition: ${myPuzzle.winCondition}`);
 }
 
-// scramble order
-myPuzzle.scrambleOrder = [7, 3, 8, 1, 2, 5, 6, 4, 9];
+// the current order of tiles, starts scrambled
+myPuzzle.currentTileOrder = [7, 3, 8, 1, 2, 5, 6, 4, 9];
 
 // helper methods
 myPuzzle.randomIndex = function(array) {
@@ -69,35 +69,54 @@ myPuzzle.getTileSize = function() {
     return myPuzzle.tileSize;
 }
 
+// create the tiles method
+myPuzzle.createTiles = function()  {
+    for (i = 0; i < myPuzzle.currentTileOrder.length; i++) {
+        const listItem = $('<li>');
+        const currentTile = myPuzzle.currentTileOrder[i]
+        const tileClasses = `tile tile${currentTile} slot${i + 1}`
+        const tileBackgroundSize = `${100 * myPuzzle.tilesWide}%`;
+        $gameBoard.append(listItem.addClass(tileClasses).val(i + 1).css({"background-image":`url(${myPuzzle.photoUrl}`,"background-size":`${tileBackgroundSize}`}).text(currentTile));
+    }
+}
+
+// set the tile size method
+myPuzzle.setTileSize = function() {
+    $('li').css({"height":`${myPuzzle.tileSize}`,"width":`${myPuzzle.tileSize}`})
+}
+
+// set the tile position method
+myPuzzle.setTilePosition = function() {
+    for (i = 1; i <= myPuzzle.currentTileOrder.length; i++){
+        const tileTop = `${0 + (myPuzzle.tileSize)*(Math.floor((i - 1) / myPuzzle.tilesWide))}px`;
+        const tileLeft = `${0 + (myPuzzle.tileSize)*((i - 1) % myPuzzle.tilesWide)}px`;
+        $(`.slot${i}`).css({"top":`${tileTop}`,"left":`${tileLeft}`});
+    }   
+}
+
+// set the tile background position method
+myPuzzle.setTileBackgroundPos = function() {
+    for (i = 0; i < myPuzzle.currentTileOrder.length; i++) {
+        const currentTile = myPuzzle.currentTileOrder[i]
+        const tileBackgroundPosX = `${0 - (myPuzzle.tileSize - 2)*((currentTile - 1) % myPuzzle.tilesWide)}px`;
+        const tileBackgroundPosY = `${0 - (myPuzzle.tileSize - 2)*(Math.floor((currentTile - 1) / myPuzzle.tilesWide))}px`;
+        $(`.slot${i + 1}`).css({"background-position":`${tileBackgroundPosX} ${tileBackgroundPosY}`});
+    }
+    console.log(`current tile order: ${myPuzzle.currentTileOrder}`);
+}
+
 // display tiles as li's in the ol with class gameBoard
 myPuzzle.displayTiles = function() {
-    for (i = 1; i <= myPuzzle.tilesWide**2; i++) {
-        // use the scramble order array to properly scramble the tiles
-        const scrambleNum = myPuzzle.scrambleOrder[i - 1];
-        // classes to add to the tiles
-        const tileClasses = `tile tile${scrambleNum} slot${i}`;
-        // top position offset relative to game board for each tile
-
-        
-        const tileTop = `${0 + (myPuzzle.tileSize)*(Math.floor((i - 1) / myPuzzle.tilesWide))}px`;
-        // left position offset of each tile
-        const tileLeft = `${0 + (myPuzzle.tileSize)*((i - 1) % myPuzzle.tilesWide)}px`;
-        // scale the background image based on how many tiles wide the game is
-        const tileBackgroundSize = `${100 * myPuzzle.tilesWide}%`;
-        // X axis position of the tiles' background image (-2 to account for 1px white border)
-        const tileBackgroundPosX = `${0 - (myPuzzle.tileSize - 2)*((scrambleNum - 1) % myPuzzle.tilesWide)}px`;
-        // Y axis position of the tiles' background image (-2 to account for 1px white border)
-        const tileBackgroundPosY = `${0 - (myPuzzle.tileSize - 2)*(Math.floor((scrambleNum - 1) / myPuzzle.tilesWide))}px`;
-        // the list item to create each iteration
-        const listItem = $('<li>').addClass(tileClasses).val(`${i}`).css({"height":`${myPuzzle.tileSize}`,"width":`${myPuzzle.tileSize}`,"top":`${tileTop}`,"left":`${tileLeft}`,"background-image":`url(${myPuzzle.photoUrl})`,"background-size":`${tileBackgroundSize}`,"background-position":`${tileBackgroundPosX} ${tileBackgroundPosY}`}).text(`${scrambleNum}`);
-        // add and display tiles to the DOM
-        $gameBoard.append(listItem);
-    }
+    // create the tiles
+    myPuzzle.createTiles();
+    myPuzzle.setTileSize();
+    myPuzzle.setTilePosition();
+    myPuzzle.setTileBackgroundPos();
 }
 
 myPuzzle.displayEmpty = function() {
     // select the last tile and add emptyTile class, and get rid of background image
-    $(`.tile${myPuzzle.tilesWide**2}`).addClass("emptyTile").css("background-image","none").empty();
+    $(`.tile${myPuzzle.tilesWide**2}`).addClass("emptyTile").css("background-image","none");
     
 }
 
@@ -114,15 +133,23 @@ myPuzzle.buildGame = function() {
     myPuzzle.displayEmpty();
 }
 
+myPuzzle.getCurrentTileOrder = function() {
+    const currentTilesList = $('li').text();
+    for (i = 0; i < currentTilesList.length; i++) {
+        myPuzzle.currentTileOrder[i] = currentTilesList[i];
+    } 
+    console.log(`current tile order: ${myPuzzle.currentTileOrder}`);
+}
+
 // event listener on window for resize, update the tile sizes and positioning
 myPuzzle.windowResize = function() {
     $(window).on('resize', function() {
         myPuzzle.getGameBoardSize();
         myPuzzle.getTileSize();
-        // set new height and width
-        // set new positions
-        // set new background positions, tricky with the scrambleNum being used
-        
+        myPuzzle.getCurrentTileOrder();
+        myPuzzle.setTileSize();
+        myPuzzle.setTilePosition();
+        myPuzzle.setTileBackgroundPos();
     });
 }
 
