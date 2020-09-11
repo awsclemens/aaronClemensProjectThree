@@ -2,6 +2,7 @@
 const $goalImage = $('.goalImageContainer img');
 const $gameBoard = $('.gameBoard');
 
+
 // namespace object //
 const myPuzzle = {};
 
@@ -21,7 +22,7 @@ myPuzzle.photoIdArray = [
 ];
 
 // set how many tiles wide our game will be: WILL BE USER CHOICE IN FUTURE
-myPuzzle.tilesWide = 5;
+myPuzzle.tilesWide = 3;
 
 // the win condition
 myPuzzle.winCondition =""
@@ -44,7 +45,7 @@ myPuzzle.setCurrentTileOrder = function() {
         myPuzzle.currentTileOrder = [11, 1, 7, 4, 5, 6, 17, 2, 9, 10, 23, 13, 22, 14, 15, 21, 18, 3, 24, 19, 12, 8, 16, 20, 25];
     }
 }
-// myPuzzle.currentTileOrder = [7, 3, 8, 1, 2, 5, 6, 4, 9];
+
 
 // helper methods
 myPuzzle.randomIndex = function(array) {
@@ -123,14 +124,33 @@ myPuzzle.displayTiles = function() {
     myPuzzle.setTileBackgroundPos();
 }
 
+// adjust properties of the empty tile 
 myPuzzle.displayEmpty = function() {
     // select the last tile and add emptyTile class, and get rid of background image
     $(`.tile${myPuzzle.tilesWide**2}`).addClass("emptyTile").css("background-image","none");
     
 }
 
+// set which tiles are active
 myPuzzle.setActiveTiles = function() {
-
+    const $emptyVal = $('.emptyTile').val();
+    console.log("set active tiles");
+    // check and set top of empty tile
+    if ($emptyVal > myPuzzle.tilesWide) {
+        $(`.slot${$emptyVal - myPuzzle.tilesWide}`).addClass('active');
+    }
+    // check and set right of empty tile
+    if ($emptyVal % myPuzzle.tilesWide != 0) {
+        $(`.slot${$emptyVal + 1}`).addClass('active');
+    }
+    // check and set bottom of empty tile
+    if ($emptyVal < myPuzzle.tilesWide**2 - (myPuzzle.tilesWide - 1)) {
+        $(`.slot${$emptyVal + myPuzzle.tilesWide}`).addClass('active');
+    }
+    // check and set left of empty tile
+    if ($emptyVal % myPuzzle.tilesWide != 1) {
+        $(`.slot${$emptyVal - 1}`).addClass('active');
+    }
 }
 
 // create the game tiles, position them, and position their background photo
@@ -170,14 +190,32 @@ myPuzzle.windowResize = function() {
 }
 
 myPuzzle.moveTiles = function() {
+    
+        
+        
+        
+        
+        
     // on click of active tile,
-        // save position of clicked active tile
-        // save position of empty tile
+    $('.gameBoard').on('click', '.active', function() {
+        // save position and value of clicked active tile
+        const clickedTileTop = $(this).css("top");
+        const clickedTileLeft = $(this).css("left");
+        const clickedTileVal = $(this).val();
+        // save position and value of empty tile
+        const emptyTileTop = $('.emptyTile').css("top");
+        const emptyTileLeft = $('.emptyTile').css("left");
+        const emptyTileVal = $('.emptyTile').val();
         // swap positions, value and slots
+        $(this).removeClass(`slot${clickedTileVal}`).addClass(`slot${emptyTileVal}`).css({'top':`${emptyTileTop}`,'left':`${emptyTileLeft}`}).val(emptyTileVal);
+        $('.emptyTile').removeClass(`slot${emptyTileVal}`).addClass(`slot${clickedTileVal}`).css({'top':`${clickedTileTop}`,'left':`${clickedTileLeft}`}).val(clickedTileVal);
         // remove all actives
+        $('li').removeClass('active');
         // check win condition
             // if won, add message to results
             // otherwise add new actives
+        myPuzzle.setActiveTiles();
+    });
 
 }
 
