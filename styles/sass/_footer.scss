@@ -1,22 +1,29 @@
 footer {
-    border: 1px solid black;
+    margin-top: 5px;
     padding: 10px 0;
     font-size: 2.2rem;
     display: flex;
     justify-content: center;
     align-items: center;
-    background: $secondary;
     color: white;
-    text-shadow: 1px 1px $primary;
+    text-shadow: 2px 2px $secondary;
+    border-radius: 10px 10px;
 }
 
 ////////////////////////
 //footer media queries//
 ////////////////////////
 
-//footer DESKTOP @ wrapper stop width//
+// footer DESKTOP @ wrapper stop width//
 @media (max-width: 1500px) {
     footer {
         @include variableFontSize(16, 320, 22, 1500);
+    }
+}
+
+// footer PHONE //
+@media (max-width: 480px) {
+    footer {
+        text-shadow: 1px 1px $secondary;
     }
 }

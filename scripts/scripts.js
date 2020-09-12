@@ -200,7 +200,7 @@ myPuzzle.checkWinCondition = function() {
     if (myPuzzle.checkWin === myPuzzle.winCondition) {
         const winMessage = $('<h2>').text('You Win!');
         $('.emptyTile').css("background-image",`url(${myPuzzle.photoUrl})`);
-        $('.win').append(winMessage).css("left","50%");
+        $('.win').append(winMessage)
         console.log("you win!");
     } else {
         // otherwise add new actives
@@ -208,9 +208,17 @@ myPuzzle.checkWinCondition = function() {
     }
 }
 
+myPuzzle.addMovesCount = function() {
+    const moves = parseInt($('.moveCount').text());
+    const updateMoves = moves + 1;
+    $('.moveCount').text(updateMoves);
+}
+
 myPuzzle.moveTiles = function() {
     // on click of active tile,
     $('.gameBoard').on('click', '.active', function() {
+        // add 1 to mouvesCount
+        myPuzzle.addMovesCount();
         // save position and value of clicked active tile
         const clickedTileTop = $(this).css("top");
         const clickedTileLeft = $(this).css("left");
@@ -230,7 +238,6 @@ myPuzzle.moveTiles = function() {
     });
 
 }
-
 
 /////////////////////////////////////////////////////////////////////
 // define init method

@@ -47,28 +47,39 @@ main {
 
 .results {
     margin-top: 30px;
-    // text-align: center;
     font-size: 3.5rem;
+    color: white;
+    background: $secondary;
     height: 60px;
     display: flex;
     justify-content: space-around;
     align-items: center;
     position: relative;
+    border-radius: 5px 5px;
 }
 
 .results h2 {
     font-size: 3.5rem;
     color: white;
+    text-shadow: 1px 1px $primary;
 }
 
 .record {
+    padding-left: 10px;
     position: absolute;
     left:0;
+    height: 100%;
+    display: flex;
+    align-items: center;
 }
 
 .moves {
+    padding-right: 10px;
     position: absolute;
-    right:0
+    right:0;
+    height: 100%;
+    display: flex;
+    align-items: center;
 }
 
 //////////////////////
@@ -123,6 +134,7 @@ main {
     .results {
         margin-top: 20px;
         @include variableHeight(30, 320, 60, 768);
+        @include variableFontSize(18, 320, 35, 768);
 
         h2 {
             @include variableFontSize(25, 320, 35, 768);
@@ -153,18 +165,4 @@ main {
     }
 }
 
-@media (max-height: 730px) {
-    .results {
-        position: absolute;
-        background: rgba(47, 79, 79, 0.8);
-        width: 75%;
-        top: 0;
-        left: -50%;
-        transform: translateX(-50%);
-        border-radius: 5px 5px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        transition: 0.3s;
-    }
-}
+
