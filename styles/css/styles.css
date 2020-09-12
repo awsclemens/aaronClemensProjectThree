@@ -329,14 +329,16 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
-  color: white;
-  font-size: 3rem;
+  color: rgba(255, 255, 255, 0);
+  font-size: 0;
+  transition: all 0.3s;
 }
 
 .emptyTile {
   border: 1px solid white;
   position: absolute;
-  background: #eec0d0;
+  z-index: -1;
+  transition: none;
 }
 
 .results {
@@ -413,10 +415,10 @@ main {
   }
 }
 
-@media (max-height: 750px) {
+@media (max-height: 788px) {
   .results {
     position: absolute;
-    background: rgba(47, 79, 79, 0.6);
+    background: rgba(47, 79, 79, 0.8);
     width: 75%;
     top: 0;
     left: -50%;
@@ -425,6 +427,7 @@ main {
     display: flex;
     justify-content: center;
     align-items: center;
+    transition: 0.3s;
   }
 }
 
