@@ -189,13 +189,26 @@ myPuzzle.windowResize = function() {
     });
 }
 
+// check win condition method
+myPuzzle.checkWinCondition = function() {
+    myPuzzle.checkWin = ""; 
+    for (i = 1; i <= myPuzzle.tilesWide**2; i++) {
+        const tileSlotVal = $(`.slot${i}`).text();
+        myPuzzle.checkWin = myPuzzle.checkWin + tileSlotVal;
+    }
+    // if won, add message to results
+    if (myPuzzle.checkWin === myPuzzle.winCondition) {
+        const winMessage = $('<h2>').text('You Win!');
+        $('.emptyTile').css("background-image",`url(${myPuzzle.photoUrl})`);
+        $('.results').append(winMessage);
+        console.log("you win!");
+    } else {
+        // otherwise add new actives
+        myPuzzle.setActiveTiles();
+    }
+}
+
 myPuzzle.moveTiles = function() {
-    
-        
-        
-        
-        
-        
     // on click of active tile,
     $('.gameBoard').on('click', '.active', function() {
         // save position and value of clicked active tile
@@ -212,9 +225,8 @@ myPuzzle.moveTiles = function() {
         // remove all actives
         $('li').removeClass('active');
         // check win condition
-            // if won, add message to results
-            // otherwise add new actives
-        myPuzzle.setActiveTiles();
+        myPuzzle.checkWinCondition()
+        
     });
 
 }
