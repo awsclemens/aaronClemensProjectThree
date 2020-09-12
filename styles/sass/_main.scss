@@ -104,7 +104,13 @@ main {
 
     .results {
         margin-top: 20px;
+        @include variableHeight(30, 320, 60, 768);
+
+        h2 {
+            @include variableFontSize(25, 320, 35, 768);
+        }
     }
+
 }
 
 // main PHONE //
@@ -125,5 +131,20 @@ main {
 
     .results {
         margin-top: 15px;
+    }
+}
+
+@media (max-height: 750px) {
+    .results {
+        position: absolute;
+        background: rgba(47, 79, 79, 0.6);
+        width: 75%;
+        top: 0;
+        left: -50%;
+        transform: translateX(-50%);
+        border-radius: 5px 5px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 }

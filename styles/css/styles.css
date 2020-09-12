@@ -258,6 +258,7 @@ ol {
   width: 80%;
   max-width: 1200px;
   margin: 0 auto;
+  position: relative;
 }
 
 @media (max-width: 480px) {
@@ -274,6 +275,7 @@ header {
 }
 
 h1 {
+  line-height: 1;
   font-size: 5rem;
   color: white;
   text-shadow: 3px 2px 1px #2f4f4f;
@@ -284,13 +286,13 @@ h1 {
     margin-top: 20px;
   }
   h1 {
-    font-size: calc((34/10 * 1rem) + (100vw - (320*1px))*((50 - 34)/(768 - 320)));
+    font-size: calc((28/10 * 1rem) + (100vw - (320*1px))*((50 - 28)/(768 - 320)));
   }
 }
 
 @media (max-width: 480px) {
   header {
-    margin-top: 15px;
+    margin-top: 10px;
   }
 }
 
@@ -387,6 +389,10 @@ main {
   }
   .results {
     margin-top: 20px;
+    height: calc((30/10 * 1rem) + (100vw - (320*1px))*((60 - 30)/(768 - 320)));
+  }
+  .results h2 {
+    font-size: calc((25/10 * 1rem) + (100vw - (320*1px))*((35 - 25)/(768 - 320)));
   }
 }
 
@@ -404,6 +410,21 @@ main {
   }
   .results {
     margin-top: 15px;
+  }
+}
+
+@media (max-height: 750px) {
+  .results {
+    position: absolute;
+    background: rgba(47, 79, 79, 0.6);
+    width: 75%;
+    top: 0;
+    left: -50%;
+    transform: translateX(-50%);
+    border-radius: 5px 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 }
 

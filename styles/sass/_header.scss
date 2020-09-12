@@ -8,6 +8,7 @@ header {
 }
 
 h1 {
+    line-height: 1;
     font-size: 5rem;
     color: white;
     text-shadow: 3px 2px 1px $secondary;
@@ -17,16 +18,17 @@ h1 {
 @media (max-width: 768px) {
     header {
         margin-top: 20px;
+
     }
 
     h1 {
-        @include variableFontSize(34, 320, 50, 768);
+        @include variableFontSize(28, 320, 50, 768);
     }
 }
 
 // header PHONE //
 @media (max-width: 480px) {
     header {
-        margin-top: 15px;
+        margin-top: 10px;
     }
 }
