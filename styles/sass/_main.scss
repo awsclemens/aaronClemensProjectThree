@@ -7,12 +7,15 @@ main {
 
 form {
     margin: 0 auto 30px auto;
-    width: 80%;
+    width: 50%;
+    min-width: 340px;
     display: flex;
     justify-content: center;
     align-items: center;
     background: $secondary;
-    color: white;
+    color: $primary;
+    font-size: 2rem;
+    border-radius: 5px 5px;
 
     fieldset {
         margin-right: 15px;
@@ -72,7 +75,7 @@ form {
 .results {
     margin-top: 30px;
     font-size: 3.5rem;
-    color: white;
+    color: $primary;
     background: $secondary;
     height: 60px;
     display: flex;
@@ -89,7 +92,7 @@ form {
 }
 
 .record {
-    padding-left: 10px;
+    padding-left: 20px;
     position: absolute;
     left:0;
     height: 100%;
@@ -98,7 +101,7 @@ form {
 }
 
 .moves {
-    padding-right: 10px;
+    padding-right: 20px;
     position: absolute;
     right:0;
     height: 100%;
@@ -184,6 +187,7 @@ form {
         right: -100%;
         width: 100%;
         transition: all 0.3s;
+        border-radius: 0;
     }
 
     .goalImageContainer {

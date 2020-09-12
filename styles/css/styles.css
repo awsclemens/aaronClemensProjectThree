@@ -230,7 +230,7 @@ html {
 
 body {
   height: 100vh;
-  background: #d87093;
+  background: #FFB6C1;
   font-family: "Kite One", sans-serif;
   font-size: 1.6rem;
   display: flex;
@@ -272,7 +272,7 @@ ol {
 }
 
 header {
-  margin-top: 40px;
+  margin-top: 20px;
   margin-bottom: 5px;
   display: flex;
   justify-content: center;
@@ -321,12 +321,15 @@ main {
 
 form {
   margin: 0 auto 30px auto;
-  width: 80%;
+  width: 50%;
+  min-width: 340px;
   display: flex;
   justify-content: center;
   align-items: center;
   background: #2f4f4f;
-  color: white;
+  color: #FFB6C1;
+  font-size: 2rem;
+  border-radius: 5px 5px;
 }
 
 form fieldset {
@@ -387,7 +390,7 @@ form fieldset input {
 .results {
   margin-top: 30px;
   font-size: 3.5rem;
-  color: white;
+  color: #FFB6C1;
   background: #2f4f4f;
   height: 60px;
   display: flex;
@@ -400,11 +403,11 @@ form fieldset input {
 .results h2 {
   font-size: 3.5rem;
   color: white;
-  text-shadow: 1px 1px #d87093;
+  text-shadow: 1px 1px #FFB6C1;
 }
 
 .record {
-  padding-left: 10px;
+  padding-left: 20px;
   position: absolute;
   left: 0;
   height: 100%;
@@ -413,7 +416,7 @@ form fieldset input {
 }
 
 .moves {
-  padding-right: 10px;
+  padding-right: 20px;
   position: absolute;
   right: 0;
   height: 100%;
@@ -477,6 +480,7 @@ form fieldset input {
     right: -100%;
     width: 100%;
     transition: all 0.3s;
+    border-radius: 0;
   }
   .goalImageContainer {
     margin-bottom: 15px;
