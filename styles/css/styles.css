@@ -249,7 +249,8 @@ h2,
 div,
 ol,
 p,
-section {
+form,
+fieldset {
   padding: 0;
   margin: 0;
 }
@@ -276,6 +277,7 @@ header {
   display: flex;
   justify-content: center;
   align-items: flex-end;
+  position: relative;
 }
 
 h1 {
@@ -283,6 +285,15 @@ h1 {
   font-size: 5rem;
   color: white;
   text-shadow: 3px 2px 1px #2f4f4f;
+}
+
+.fa-th {
+  color: white;
+  font-size: 3rem;
+  position: absolute;
+  top: 0;
+  right: 0;
+  visibility: hidden;
 }
 
 @media (max-width: 768px) {
@@ -298,10 +309,38 @@ h1 {
   header {
     margin-top: 10px;
   }
+  .fa-th {
+    visibility: initial;
+  }
 }
 
 main {
   margin: 20px 0;
+  position: relative;
+}
+
+form {
+  margin: 0 auto 30px auto;
+  width: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #2f4f4f;
+  color: white;
+}
+
+form fieldset {
+  margin-right: 15px;
+  border: none;
+  padding: 10px;
+}
+
+form fieldset:last-child {
+  margin-right: 0;
+}
+
+form fieldset input {
+  display: none;
 }
 
 .gameContainer {
@@ -407,6 +446,9 @@ main {
 }
 
 @media (max-width: 768px) {
+  form {
+    margin-bottom: 20px;
+  }
   .goalImageContainer {
     margin-bottom: 20px;
     width: calc((288/10 * 1rem) + (100vw - (481*1px))*((336 - 288)/(768 - 481)));
@@ -429,6 +471,13 @@ main {
   main {
     margin: 0;
   }
+  form {
+    position: absolute;
+    top: 0;
+    right: -100%;
+    width: 100%;
+    transition: all 0.3s;
+  }
   .goalImageContainer {
     margin-bottom: 15px;
     width: calc((240/10 * 1rem) + (100vw - (320*1px))*((240 - 240)/(480 - 320)));
@@ -443,7 +492,7 @@ main {
 }
 
 footer {
-  margin-top: 5px;
+  margin-top: 10px;
   padding: 10px 0;
   font-size: 2.2rem;
   display: flex;

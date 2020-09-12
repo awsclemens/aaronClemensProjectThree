@@ -4,17 +4,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="Aaron W.S. Clemens">
+    <title>Photo Puzzle | Aaron Clemens</title>
     <link rel="shortcut icon" type="image/x-icon" href="./assets/favicon.ico" />
     <link href="https://fonts.googleapis.com/css2?family=Kite+One&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./styles/css/styles.css">
-    <title>Photo Puzzle | Aaron Clemens</title>
+    <script src="https://kit.fontawesome.com/f1510d28d0.js" crossorigin="anonymous"></script>
 </head>
 <body>
-    <header>
-        <h1>Photo Puzzle</h1>
-    </header>
+    <div class="wrapper">
+        <header>
+            <h1>Photo Puzzle</h1>
+            <i class="fas fa-th" aria-label="change difficulty"></i>
+        </header>
+    </div>
     <main>
         <div class="wrapper">
+            <form action="">
+                <fieldset>
+                    <label for="easy">Easy 3x3</label>
+                    <input id="easy" type="radio" name="difficulty" value=3>
+                </fieldset>
+                <fieldset>
+                    <label for="normal">Normal 4x4</label>
+                    <input id="normal" type="radio" name="difficulty" value=4>
+                </fieldset>
+                <fieldset>
+                    <label  for="hard">Hard 5x5</label>
+                    <input id="hard" type="radio" name="difficulty" value=5>
+                </fieldset>
+            </form>
             <div class="gameContainer">
                 <div class="goalImageContainer">
                     <img src="" alt="">
@@ -24,13 +42,13 @@
             </div>
             <div class="results">
                 <div class="record">
-                    <p>Record: <span>0</span></p>
+                    <p>Record: <span>50</span></p>
                 </div>
                 <div class="win">
                     
                 </div>
                 <div class="moves">
-                    <p>Moves: <span class="moveCount">0</span></p>
+                    <p><span class="moveCount">0</span> :Moves</p>
                 </div>
             </div>
         </div>

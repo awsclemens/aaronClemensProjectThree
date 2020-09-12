@@ -25,10 +25,10 @@ myPuzzle.photoIdArray = [
 myPuzzle.tilesWide = 3;
 
 
-// set all records to 0;
-myPuzzle.easyRecord = 0;
-myPuzzle.mediumRecord = 0;
-myPuzzle.hardRecord = 0; 
+// set all records;
+myPuzzle.easyRecord = 50;
+myPuzzle.mediumRecord = 75;
+myPuzzle.hardRecord = 100; 
 
 
 // the win condition
@@ -44,15 +44,20 @@ myPuzzle.createWinCondition = function() {
 
 // the current order of tiles, starts scrambled
 myPuzzle.setCurrentTileOrder = function() {
+    console.log(`tiles wide: ${myPuzzle.tilesWide}`);
     if (myPuzzle.tilesWide === 3) {
         myPuzzle.currentTileOrder = [4, 8, 3, 1, 6, 7, 5, 2, 9];
+        return myPuzzle.currentTileOrder;
     } else if (myPuzzle.tilesWide === 4) {
         myPuzzle.currentTileOrder = [6, 10, 4, 14, 7, 12, 13, 5, 2, 11, 15, 1, 9, 3, 8, 16];
+        return myPuzzle.currentTileOrder;
     } else if (myPuzzle.tilesWide === 5) {
         myPuzzle.currentTileOrder = [11, 1, 7, 4, 5, 6, 17, 2, 9, 10, 23, 13, 22, 14, 15, 21, 18, 3, 24, 19, 12, 8, 16, 20, 25];
+        console.log(`set tile order: ${myPuzzle.currentTileOrder}`);
+        return myPuzzle.currentTileOrder;
     }
+    
 }
-
 
 // helper methods
 myPuzzle.randomIndex = function(array) {
@@ -61,10 +66,13 @@ myPuzzle.randomIndex = function(array) {
 }
 
 // call our randomIndex helper method on photoIdArray and set it to namespace property
-myPuzzle.chosenPhoto = myPuzzle.randomIndex(myPuzzle.photoIdArray);
 
-// add our chosen photo's id to the picsum url and save as property in namespace
-myPuzzle.photoUrl = `https://picsum.photos/id/${myPuzzle.chosenPhoto.id}/600/600`;
+
+myPuzzle.choosePhoto = function() {
+    myPuzzle.chosenPhoto = myPuzzle.randomIndex(myPuzzle.photoIdArray);
+    // add our chosen photo's id to the picsum url and save as property in namespace
+    myPuzzle.photoUrl = `https://picsum.photos/id/${myPuzzle.chosenPhoto.id}/600/600`;
+}
 
 // set the goal image and its alt text
 myPuzzle.setGoalImage = function() {
@@ -243,17 +251,46 @@ myPuzzle.moveTiles = function() {
         myPuzzle.checkWinCondition()
         
     });
+}
 
+myPuzzle.loadGame = function () {
+    myPuzzle.createWinCondition();
+    myPuzzle.choosePhoto();
+    myPuzzle.setGoalImage();
+    myPuzzle.setCurrentTileOrder();
+    myPuzzle.buildGame();
+}
+
+myPuzzle.resetGame = function() {
+    $('form').on('change', function() {
+        const userChoice = $(this).find(':checked');
+        console.log(userChoice);
+        myPuzzle.tilesWide = parseInt(userChoice.val());
+        $('.gameBoard').empty();
+        $('.moveCount').text(0);
+        myPuzzle.winCondition="";
+        myPuzzle.loadGame();
+        userChoice.prop('checked',false);
+    });
+}
+
+myPuzzle.slidingMenu = function() {
+    $('.fa-th').on('click', function() {
+        if ($('form').css("right") === "0px") {
+            $('form').css("right", "-100%")
+        } else {
+            $('form').css("right", "0px")
+        }
+    })
 }
 
 /////////////////////////////////////////////////////////////////////
 // define init method
 myPuzzle.init = function() {
     console.log("initialized");
-    myPuzzle.createWinCondition();
-    myPuzzle.setGoalImage();
-    myPuzzle.setCurrentTileOrder();
-    myPuzzle.buildGame();
+    myPuzzle.loadGame();
+    myPuzzle.resetGame();
+    myPuzzle.slidingMenu();
     myPuzzle.moveTiles();
     myPuzzle.windowResize();
 }

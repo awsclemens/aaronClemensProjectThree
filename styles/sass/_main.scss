@@ -2,8 +2,32 @@
 main {
     // padding: 40px 0;
     margin: 20px 0;
+    position: relative;
 }
 
+form {
+    margin: 0 auto 30px auto;
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: $secondary;
+    color: white;
+
+    fieldset {
+        margin-right: 15px;
+        border: none;
+        padding: 10px;
+
+        &:last-child {
+            margin-right: 0;
+        }
+
+        input {
+            display:none;
+        }
+    }
+}
 .gameContainer {
     display: flex;
     justify-content: space-between;
@@ -121,6 +145,10 @@ main {
         // padding: 20px 0;
     }
 
+    form {
+        margin-bottom: 20px;
+    }
+    
     .goalImageContainer {
         margin-bottom: 20px;
         @include variableWidth(288, 481, 336, 768);
@@ -148,6 +176,14 @@ main {
     main {
         // padding: 15px;
         margin: 0;
+    }
+
+    form {
+        position: absolute;
+        top: 0;
+        right: -100%;
+        width: 100%;
+        transition: all 0.3s;
     }
 
     .goalImageContainer {
