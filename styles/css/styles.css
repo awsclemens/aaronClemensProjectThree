@@ -451,7 +451,6 @@ footer {
   align-items: center;
   color: white;
   text-shadow: 2px 2px #2f4f4f;
-  border-radius: 10px 10px;
 }
 
 @media (max-width: 1500px) {

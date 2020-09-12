@@ -24,6 +24,13 @@ myPuzzle.photoIdArray = [
 // set how many tiles wide our game will be: WILL BE USER CHOICE IN FUTURE
 myPuzzle.tilesWide = 3;
 
+
+// set all records to 0;
+myPuzzle.easyRecord = 0;
+myPuzzle.mediumRecord = 0;
+myPuzzle.hardRecord = 0; 
+
+
 // the win condition
 myPuzzle.winCondition =""
 
