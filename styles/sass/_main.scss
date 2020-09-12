@@ -1,6 +1,7 @@
 // main styles
 main {
-    padding: 40px 0;
+    // padding: 40px 0;
+    margin: 20px 0;
 }
 
 .gameContainer {
@@ -45,15 +46,29 @@ main {
 }
 
 .results {
-    margin-top: 40px;
-    text-align: center;
-    font-size: 4rem;
+    margin-top: 30px;
+    // text-align: center;
+    font-size: 3.5rem;
     height: 60px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    position: relative;
 }
 
 .results h2 {
     font-size: 3.5rem;
     color: white;
+}
+
+.record {
+    position: absolute;
+    left:0;
+}
+
+.moves {
+    position: absolute;
+    right:0
 }
 
 //////////////////////
@@ -92,7 +107,7 @@ main {
 // main PHONE TO TABLET //
 @media (max-width: 768px) {
     main {
-        padding: 20px 0;
+        // padding: 20px 0;
     }
 
     .goalImageContainer {
@@ -119,17 +134,18 @@ main {
 // main PHONE //
 @media (max-width: 480px) {
     main {
-        padding: 15px;
+        // padding: 15px;
+        margin: 0;
     }
 
     .goalImageContainer {
         margin-bottom: 15px;
-        @include variableWidth(240, 320, 288, 480);
+        @include variableWidth(240, 320, 240, 480);
     }
 
     .gameBoard {
-        @include variableWidth(300, 320, 360, 480);
-        @include variableHeight(300, 320, 360, 480);
+        width: 300px;
+        height: 300px;
     }
 
     .results {
@@ -137,7 +153,7 @@ main {
     }
 }
 
-@media (max-height: 788px) {
+@media (max-height: 730px) {
     .results {
         position: absolute;
         background: rgba(47, 79, 79, 0.8);

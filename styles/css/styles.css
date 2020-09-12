@@ -229,9 +229,13 @@ html {
 }
 
 body {
+  height: 100vh;
   background: #d87093;
   font-family: "Kite One", sans-serif;
   font-size: 1.6rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 img {
@@ -297,7 +301,7 @@ h1 {
 }
 
 main {
-  padding: 40px 0;
+  margin: 20px 0;
 }
 
 .gameContainer {
@@ -342,15 +346,28 @@ main {
 }
 
 .results {
-  margin-top: 40px;
-  text-align: center;
-  font-size: 4rem;
+  margin-top: 30px;
+  font-size: 3.5rem;
   height: 60px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  position: relative;
 }
 
 .results h2 {
   font-size: 3.5rem;
   color: white;
+}
+
+.record {
+  position: absolute;
+  left: 0;
+}
+
+.moves {
+  position: absolute;
+  right: 0;
 }
 
 @media (max-width: 1500px) {
@@ -378,9 +395,6 @@ main {
 }
 
 @media (max-width: 768px) {
-  main {
-    padding: 20px 0;
-  }
   .goalImageContainer {
     margin-bottom: 20px;
     width: calc((288/10 * 1rem) + (100vw - (481*1px))*((336 - 288)/(768 - 481)));
@@ -400,22 +414,22 @@ main {
 
 @media (max-width: 480px) {
   main {
-    padding: 15px;
+    margin: 0;
   }
   .goalImageContainer {
     margin-bottom: 15px;
-    width: calc((240/10 * 1rem) + (100vw - (320*1px))*((288 - 240)/(480 - 320)));
+    width: calc((240/10 * 1rem) + (100vw - (320*1px))*((240 - 240)/(480 - 320)));
   }
   .gameBoard {
-    width: calc((300/10 * 1rem) + (100vw - (320*1px))*((360 - 300)/(480 - 320)));
-    height: calc((300/10 * 1rem) + (100vw - (320*1px))*((360 - 300)/(480 - 320)));
+    width: 300px;
+    height: 300px;
   }
   .results {
     margin-top: 15px;
   }
 }
 
-@media (max-height: 788px) {
+@media (max-height: 730px) {
   .results {
     position: absolute;
     background: rgba(47, 79, 79, 0.8);

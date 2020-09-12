@@ -200,7 +200,7 @@ myPuzzle.checkWinCondition = function() {
     if (myPuzzle.checkWin === myPuzzle.winCondition) {
         const winMessage = $('<h2>').text('You Win!');
         $('.emptyTile').css("background-image",`url(${myPuzzle.photoUrl})`);
-        $('.results').append(winMessage).css("left","50%");
+        $('.win').append(winMessage).css("left","50%");
         console.log("you win!");
     } else {
         // otherwise add new actives

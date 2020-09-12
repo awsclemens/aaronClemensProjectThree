@@ -4,9 +4,13 @@ html {
 }
 
 body {
+    height: 100vh;
     background: $primary;
     font-family: $primaryFont;
     font-size: 1.6rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 img {
