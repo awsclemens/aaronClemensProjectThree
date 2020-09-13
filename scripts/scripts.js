@@ -46,6 +46,7 @@ myPuzzle.setCurrentTileOrder = function() {
     console.log(`tiles wide: ${myPuzzle.tilesWide}`);
     if (myPuzzle.tilesWide === 3) {
         myPuzzle.currentTileOrder = [4, 8, 3, 1, 6, 7, 5, 2, 9];
+        // myPuzzle.currentTileOrder = [1, 2, 3, 4, 5, 6, 7, 8, 9];
         if (myPuzzle.easyRecord < 50){
             $('.record span').text(myPuzzle.easyRecord).css("color","gold");
         } else {
@@ -92,14 +93,14 @@ myPuzzle.setGoalImage = function() {
 
 // get the current game board size
 myPuzzle.getGameBoardSize = function() {
-    myPuzzle.gameBoardSize = parseInt($gameBoard.css('width'));
+    myPuzzle.gameBoardSize = parseInt($gameBoard.css('width')) - 4;
     console.log(`game size = ${myPuzzle.gameBoardSize}px`);
     return myPuzzle.gameBoardSize;
 }
 
 // get the current tile size
 myPuzzle.getTileSize = function() {
-    myPuzzle.tileSize = myPuzzle.gameBoardSize / myPuzzle.tilesWide;
+    myPuzzle.tileSize = (myPuzzle.gameBoardSize / myPuzzle.tilesWide);
     console.log(`tiles will be this wide: ${myPuzzle.tileSize}px`);
     return myPuzzle.tileSize;
 }
@@ -111,7 +112,7 @@ myPuzzle.createTiles = function()  {
         const currentTile = myPuzzle.currentTileOrder[i]
         const tileClasses = `tile tile${currentTile} slot${i + 1}`
         const tileBackgroundSize = `${100 * myPuzzle.tilesWide}%`;
-        $gameBoard.append(listItem.addClass(tileClasses).val(i + 1).css({"background-image":`url(${myPuzzle.photoUrl}`,"background-size":`${tileBackgroundSize}`}).text(currentTile));
+        $gameBoard.append(listItem.addClass(tileClasses).val(i + 1).css({"background-image":`url(${myPuzzle.photoUrl}`,"background-size":`${tileBackgroundSize}`,"background-repeat":"no-repeat"}).text(currentTile));
     }
 }
 

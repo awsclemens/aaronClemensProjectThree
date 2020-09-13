@@ -370,6 +370,8 @@ form fieldset input {
 }
 
 .tile {
+  border: 1px solid white;
+  background-origin: border-box;
   position: absolute;
   display: flex;
   justify-content: center;
