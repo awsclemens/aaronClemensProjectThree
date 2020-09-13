@@ -25,9 +25,9 @@ myPuzzle.photoIdArray = [
 myPuzzle.tilesWide = 3;
 
 // set all records;
-myPuzzle.easyRecord = 45;
-myPuzzle.normalRecord = 75;
-myPuzzle.hardRecord = 100; 
+myPuzzle.easyRecord = 50;
+myPuzzle.normalRecord = 100;
+myPuzzle.hardRecord = 200; 
 
 
 // the win condition
@@ -46,25 +46,23 @@ myPuzzle.setCurrentTileOrder = function() {
     console.log(`tiles wide: ${myPuzzle.tilesWide}`);
     if (myPuzzle.tilesWide === 3) {
         myPuzzle.currentTileOrder = [7, 5, 8, 6, 2, 4, 1, 3, 9];
-        // myPuzzle.currentTileOrder = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-        if (myPuzzle.easyRecord < 45){
+        if (myPuzzle.easyRecord < 50){
             $('.record span').text(myPuzzle.easyRecord).css("color","gold");
         } else {
             $('.record span').text(myPuzzle.easyRecord).css("color","#9a8c98");
         }
         return myPuzzle.currentTileOrder;
     } else if (myPuzzle.tilesWide === 4) {
-        // myPuzzle.currentTileOrder = [6, 10, 4, 14, 7, 12, 13, 5, 2, 11, 15, 1, 9, 3, 8, 16];
-        myPuzzle.currentTileOrder = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
-        if (myPuzzle.normalRecord < 75){
+        myPuzzle.currentTileOrder = [13, 5, 14, 9, 3, 10, 4, 7, 2, 15, 12, 6,11, 1, 8, 16];
+        if (myPuzzle.normalRecord < 100){
             $('.record span').text(myPuzzle.normalRecord).css("color","gold");
         } else {
             $('.record span').text(myPuzzle.normalRecord).css("color","#9a8c98");
         }
         return myPuzzle.currentTileOrder;
     } else if (myPuzzle.tilesWide === 5) {
-        myPuzzle.currentTileOrder = [11, 1, 7, 4, 5, 6, 17, 2, 9, 10, 23, 13, 22, 14, 15, 21, 18, 3, 24, 19, 12, 8, 16, 20, 25];
-        if (myPuzzle.hardRecord < 100){
+        myPuzzle.currentTileOrder = [18, 9, 20,11, 15, 21, 17, 10, 2, 24, 4, 23, 8, 19, 5, 22, 1, 7, 14, 12, 6, 16, 13, 3, 25];
+        if (myPuzzle.hardRecord < 200){
             $('.record span').text(myPuzzle.hardRecord).css("color","gold");
         } else {
             $('.record span').text(myPuzzle.hardRecord).css("color","#9a8c98");
