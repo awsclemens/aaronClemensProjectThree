@@ -22,5 +22,8 @@ footer {
 
 // footer PHONE //
 @media (max-width: 480px) {
-    
+    footer {
+        margin-top: 0;
+        padding: 5px 0;
+    }
 }

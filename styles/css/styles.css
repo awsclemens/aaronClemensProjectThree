@@ -499,15 +499,15 @@ form fieldset input {
     padding: 10px 5px;
   }
   .goalImageContainer {
-    margin-bottom: 15px;
-    width: calc((240/10 * 1rem) + (100vw - (320*1px))*((240 - 240)/(480 - 320)));
+    margin-bottom: 5px;
+    width: calc((180/10 * 1rem) + (100vw - (320*1px))*((240 - 180)/(480 - 320)));
   }
   .gameBoard {
     width: 300px;
     height: 300px;
   }
   .results {
-    margin-top: 15px;
+    margin-top: 5px;
   }
   .results .record {
     padding-left: 10px;
@@ -531,5 +531,12 @@ footer {
 @media (max-width: 1500px) {
   footer {
     font-size: calc((16/10 * 1rem) + (100vw - (320*1px))*((22 - 16)/(1500 - 320)));
+  }
+}
+
+@media (max-width: 480px) {
+  footer {
+    margin-top: 0;
+    padding: 5px 0;
   }
 }
