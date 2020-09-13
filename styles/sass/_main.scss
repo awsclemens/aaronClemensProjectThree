@@ -208,8 +208,8 @@ form {
     }
 
     .goalImageContainer {
-        margin-bottom: 15px;
-        @include variableWidth(240, 320, 240, 480);
+        margin-bottom: 5px;
+        @include variableWidth(180, 320, 240, 480);
     }
 
     .gameBoard {
@@ -218,7 +218,7 @@ form {
     }
 
     .results {
-        margin-top: 15px;
+        margin-top: 5px;
 
         .record {
             padding-left: 10px;
