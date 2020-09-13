@@ -25,7 +25,7 @@ myPuzzle.photoIdArray = [
 myPuzzle.tilesWide = 3;
 
 // set all records;
-myPuzzle.easyRecord = 50;
+myPuzzle.easyRecord = 45;
 myPuzzle.normalRecord = 75;
 myPuzzle.hardRecord = 100; 
 
@@ -45,16 +45,17 @@ myPuzzle.createWinCondition = function() {
 myPuzzle.setCurrentTileOrder = function() {
     console.log(`tiles wide: ${myPuzzle.tilesWide}`);
     if (myPuzzle.tilesWide === 3) {
-        myPuzzle.currentTileOrder = [4, 8, 3, 1, 6, 7, 5, 2, 9];
+        myPuzzle.currentTileOrder = [7, 5, 8, 6, 2, 4, 1, 3, 9];
         // myPuzzle.currentTileOrder = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-        if (myPuzzle.easyRecord < 50){
+        if (myPuzzle.easyRecord < 45){
             $('.record span').text(myPuzzle.easyRecord).css("color","gold");
         } else {
             $('.record span').text(myPuzzle.easyRecord).css("color","#9a8c98");
         }
         return myPuzzle.currentTileOrder;
     } else if (myPuzzle.tilesWide === 4) {
-        myPuzzle.currentTileOrder = [6, 10, 4, 14, 7, 12, 13, 5, 2, 11, 15, 1, 9, 3, 8, 16];
+        // myPuzzle.currentTileOrder = [6, 10, 4, 14, 7, 12, 13, 5, 2, 11, 15, 1, 9, 3, 8, 16];
+        myPuzzle.currentTileOrder = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
         if (myPuzzle.normalRecord < 75){
             $('.record span').text(myPuzzle.normalRecord).css("color","gold");
         } else {
