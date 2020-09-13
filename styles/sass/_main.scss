@@ -7,6 +7,7 @@ main {
 
 form {
     margin: 0 auto 30px auto;
+    padding: 10px 0;
     width: 50%;
     min-width: 370px;
     display: flex;
@@ -18,12 +19,20 @@ form {
     border-radius: 5px 5px;
 
     fieldset {
-        margin-right: 15px;
+        margin-right: 20px;
         border: none;
-        padding: 10px;
+        
 
         &:last-child {
             margin-right: 0;
+        }
+
+        label {
+            padding: 10px;
+
+            &:hover {
+                cursor: pointer;
+            }
         }
 
         input {
@@ -141,6 +150,12 @@ form {
 
 // main TABLET TO SMALL DESKTOP //
 @media (max-width: 940px) {
+    form {
+        
+        fieldset {
+            margin-right: 15px;
+        }
+    }
     .gameContainer {
         flex-direction: column;
     }
@@ -164,6 +179,10 @@ form {
 
     form {
         margin-bottom: 20px;
+
+        fieldset {
+            margin-right: 10px;
+        }
     }
     
     .goalImageContainer {
@@ -204,9 +223,14 @@ form {
         transition: all 0.3s;
         border-radius: 0;
         font-size: 1.8rem;
+
         fieldset {
-            padding: 10px 5px;
-            
+            // padding: 10px 5px;
+            margin-right: 5px;
+
+            label {
+                padding: 5px;
+            }
         }
     }
 

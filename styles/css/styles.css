@@ -244,6 +244,11 @@ img {
   display: block;
 }
 
+a {
+  text-decoration: none;
+  color: #22223b;
+}
+
 h1,
 h2,
 div,
@@ -321,6 +326,7 @@ main {
 
 form {
   margin: 0 auto 30px auto;
+  padding: 10px 0;
   width: 50%;
   min-width: 370px;
   display: flex;
@@ -333,13 +339,20 @@ form {
 }
 
 form fieldset {
-  margin-right: 15px;
+  margin-right: 20px;
   border: none;
-  padding: 10px;
 }
 
 form fieldset:last-child {
   margin-right: 0;
+}
+
+form fieldset label {
+  padding: 10px;
+}
+
+form fieldset label:hover {
+  cursor: pointer;
 }
 
 form fieldset input {
@@ -449,6 +462,9 @@ form fieldset input {
 }
 
 @media (max-width: 940px) {
+  form fieldset {
+    margin-right: 15px;
+  }
   .gameContainer {
     flex-direction: column;
   }
@@ -465,6 +481,9 @@ form fieldset input {
 @media (max-width: 768px) {
   form {
     margin-bottom: 20px;
+  }
+  form fieldset {
+    margin-right: 10px;
   }
   .goalImageContainer {
     margin-bottom: 20px;
@@ -499,7 +518,10 @@ form fieldset input {
     font-size: 1.8rem;
   }
   form fieldset {
-    padding: 10px 5px;
+    margin-right: 5px;
+  }
+  form fieldset label {
+    padding: 5px;
   }
   .goalImageContainer {
     margin-bottom: 5px;
