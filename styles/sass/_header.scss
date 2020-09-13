@@ -12,8 +12,8 @@ header {
 h1 {
     line-height: 1;
     font-size: 5rem;
-    color: white;
-    text-shadow: 3px 2px 1px $secondary;
+    color: $secondary;
+    text-shadow: 3px 2px 1px $accent;
 }
 
 .fa-th {

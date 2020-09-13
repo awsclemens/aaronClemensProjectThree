@@ -47,19 +47,29 @@ myPuzzle.setCurrentTileOrder = function() {
     console.log(`tiles wide: ${myPuzzle.tilesWide}`);
     if (myPuzzle.tilesWide === 3) {
         myPuzzle.currentTileOrder = [4, 8, 3, 1, 6, 7, 5, 2, 9];
-        $('.record span').text(myPuzzle.easyRecord);
+        if (myPuzzle.easyRecord < 50){
+            $('.record span').text(myPuzzle.easyRecord).css("color","gold");
+        } else {
+            $('.record span').text(myPuzzle.easyRecord).css("color","#9a8c98");
+        }
         return myPuzzle.currentTileOrder;
     } else if (myPuzzle.tilesWide === 4) {
         myPuzzle.currentTileOrder = [6, 10, 4, 14, 7, 12, 13, 5, 2, 11, 15, 1, 9, 3, 8, 16];
-        $('.record span').text(myPuzzle.normalRecord);
+        if (myPuzzle.normalRecord < 75){
+            $('.record span').text(myPuzzle.normalRecord).css("color","gold");
+        } else {
+            $('.record span').text(myPuzzle.normalRecord).css("color","#9a8c98");
+        }
         return myPuzzle.currentTileOrder;
     } else if (myPuzzle.tilesWide === 5) {
         myPuzzle.currentTileOrder = [11, 1, 7, 4, 5, 6, 17, 2, 9, 10, 23, 13, 22, 14, 15, 21, 18, 3, 24, 19, 12, 8, 16, 20, 25];
-        console.log(`set tile order: ${myPuzzle.currentTileOrder}`);
-        $('.record span').text(myPuzzle.hardRecord);
+        if (myPuzzle.hardRecord < 100){
+            $('.record span').text(myPuzzle.hardRecord).css("color","gold");
+        } else {
+            $('.record span').text(myPuzzle.hardRecord).css("color","#9a8c98");
+        }
         return myPuzzle.currentTileOrder;
     }
-    
 }
 
 // helper methods
@@ -69,8 +79,6 @@ myPuzzle.randomIndex = function(array) {
 }
 
 // call our randomIndex helper method on photoIdArray and set it to namespace property
-
-
 myPuzzle.choosePhoto = function() {
     myPuzzle.chosenPhoto = myPuzzle.randomIndex(myPuzzle.photoIdArray);
     // add our chosen photo's id to the picsum url and save as property in namespace
@@ -207,12 +215,34 @@ myPuzzle.windowResize = function() {
     });
 }
 
+// check for a new record
+myPuzzle.checkNewRecord = function() {
+    const userMoveCount = parseInt($('.moveCount').text());
+    if (myPuzzle.tilesWide === 3 && userMoveCount < myPuzzle.easyRecord) {
+        myPuzzle.easyRecord = userMoveCount;
+        $('.record span').text(myPuzzle.easyRecord).css("color","gold");
+        alert(`Congratulations! It's a new record!
+        ${myPuzzle.easyRecord} moves for: easy difficulty`);
+        // message
+    }
+    if (myPuzzle.tilesWide === 4 && userMoveCount < myPuzzle.normalRecord) {
+        myPuzzle.normalRecord = userMoveCount;
+        $('.record span').text(myPuzzle.normalRecord).css("color","gold");
+        // message
+    }
+    if (myPuzzle.tilesWide === 5 && userMoveCount < myPuzzle.hardRecord) {
+        myPuzzle.hardRecord = userMoveCount;
+        $('.record span').text(myPuzzle.hardRecord).css("color","gold");
+        // message
+    }
+}
+
 // check win condition method
 myPuzzle.checkWinCondition = function() {
     myPuzzle.checkWin = ""; 
     for (i = 1; i <= myPuzzle.tilesWide**2; i++) {
-        const tileSlotVal = $(`.slot${i}`).text();
-        myPuzzle.checkWin = myPuzzle.checkWin + tileSlotVal;
+        const tileSlotText = $(`.slot${i}`).text();
+        myPuzzle.checkWin = myPuzzle.checkWin + tileSlotText;
     }
     // if won, add message to results
     if (myPuzzle.checkWin === myPuzzle.winCondition) {
@@ -220,6 +250,7 @@ myPuzzle.checkWinCondition = function() {
         $('.emptyTile').css("background-image",`url(${myPuzzle.photoUrl})`);
         $('.win').append(winMessage)
         console.log("you win!");
+        myPuzzle.checkNewRecord();
     } else {
         // otherwise add new actives
         myPuzzle.setActiveTiles();
@@ -256,8 +287,6 @@ myPuzzle.moveTiles = function() {
     });
 }
 
-
-
 myPuzzle.loadGame = function () {
     myPuzzle.createWinCondition();
     myPuzzle.choosePhoto();
@@ -272,6 +301,7 @@ myPuzzle.resetGame = function() {
         console.log(userChoice);
         myPuzzle.tilesWide = parseInt(userChoice.val());
         $('.gameBoard').empty();
+        $('.win').empty();
         $('.moveCount').text(0);
         myPuzzle.winCondition="";
         myPuzzle.loadGame();
