@@ -14,7 +14,7 @@ form {
     justify-content: center;
     align-items: center;
     background: $secondary;
-    color: $accent;
+    color: $primary;
     font-size: 2rem;
     border-radius: 5px 5px;
 
@@ -85,9 +85,9 @@ form {
     margin-top: 30px;
     padding: 5px 0;
     font-size: 3.5rem;
-    color: $primary;
+    color: $accent;
     background: $secondary;
-    text-shadow: 1px 1px $accent;
+    text-shadow: 1px 1px $primary;
     height: 60px;
     display: flex;
     flex-direction: column;

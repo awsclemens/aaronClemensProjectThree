@@ -230,7 +230,7 @@ html {
 
 body {
   height: 100vh;
-  background: #4a4e69;
+  background: #9a8c98;
   font-family: "Kite One", sans-serif;
   font-size: 1.6rem;
   display: flex;
@@ -289,11 +289,11 @@ h1 {
   line-height: 1;
   font-size: 5rem;
   color: #22223b;
-  text-shadow: 3px 2px 1px #9a8c98;
+  text-shadow: 3px 2px 1px #4a4e69;
 }
 
 .fa-th {
-  color: #9a8c98;
+  color: #4a4e69;
   font-size: 3rem;
   position: absolute;
   top: 0;
@@ -418,8 +418,8 @@ form fieldset input {
 
 .results h2 {
   font-size: 3.5rem;
-  color: #9a8c98;
-  text-shadow: 1px 1px #4a4e69;
+  color: #4a4e69;
+  text-shadow: 1px 1px #9a8c98;
 }
 
 .record {
@@ -550,7 +550,7 @@ footer {
   justify-content: center;
   align-items: center;
   color: #22223b;
-  text-shadow: 1px 1px #9a8c98;
+  text-shadow: 1px 1px #4a4e69;
 }
 
 @media (max-width: 1500px) {
