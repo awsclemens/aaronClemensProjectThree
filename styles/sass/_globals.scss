@@ -49,9 +49,15 @@ ol {
 // global media queries //
 //////////////////////////
 
+// global DESKTOP //
+@media (max-width: 1500px) {
+    @include variableFontSize(20, 320, 60, 1500);
+}
+
 // global PHONE //
 @media (max-width: 480px) {
     .wrapper {
         width: 95%;
     }
 }
+

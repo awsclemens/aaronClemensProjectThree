@@ -270,6 +270,10 @@ ol {
   margin: 0 auto;
 }
 
+@media (max-width: 1500px) {
+  font-size: calc((20/10 * 1rem) + (100vw - (320*1px))*((60 - 20)/(1500 - 320)));
+}
+
 @media (max-width: 480px) {
   .wrapper {
     width: 95%;
