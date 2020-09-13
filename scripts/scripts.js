@@ -24,12 +24,10 @@ myPuzzle.photoIdArray = [
 // set how many tiles wide our game will be: WILL BE USER CHOICE IN FUTURE
 myPuzzle.tilesWide = 3;
 
-
 // set all records;
 myPuzzle.easyRecord = 50;
 myPuzzle.normalRecord = 75;
 myPuzzle.hardRecord = 100; 
-
 
 // the win condition
 myPuzzle.winCondition =""
@@ -134,8 +132,8 @@ myPuzzle.setTilePosition = function() {
 myPuzzle.setTileBackgroundPos = function() {
     for (i = 0; i < myPuzzle.currentTileOrder.length; i++) {
         const currentTile = myPuzzle.currentTileOrder[i]
-        const tileBackgroundPosX = `${0 - (myPuzzle.tileSize - 2)*((currentTile - 1) % myPuzzle.tilesWide)}px`;
-        const tileBackgroundPosY = `${0 - (myPuzzle.tileSize - 2)*(Math.floor((currentTile - 1) / myPuzzle.tilesWide))}px`;
+        const tileBackgroundPosX = `${0 - (myPuzzle.tileSize - 1)*((currentTile - 1) % myPuzzle.tilesWide)}px`;
+        const tileBackgroundPosY = `${0 - (myPuzzle.tileSize - 1)*(Math.floor((currentTile - 1) / myPuzzle.tilesWide))}px`;
         $(`.slot${i + 1}`).css({"background-position":`${tileBackgroundPosX} ${tileBackgroundPosY}`});
     }
     console.log(`current tile order: ${myPuzzle.currentTileOrder}`);
