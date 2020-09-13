@@ -311,10 +311,10 @@ myPuzzle.resetGame = function() {
 
 myPuzzle.slidingMenu = function() {
     $('.fa-th').on('click', function() {
-        if ($('form').css("right") === "0px") {
-            $('form').css("right", "-100%")
+        if ($('form').css("left") === "0px") {
+            $('form').css("left","-100%");
         } else {
-            $('form').css("right", "0px")
+            $('form').css("left","0px");
         }
     })
 }

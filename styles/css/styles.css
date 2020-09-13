@@ -288,7 +288,7 @@ h1 {
 }
 
 .fa-th {
-  color: white;
+  color: #9a8c98;
   font-size: 3rem;
   position: absolute;
   top: 0;
@@ -389,6 +389,7 @@ form fieldset input {
 
 .results {
   margin-top: 30px;
+  padding: 5px 0;
   font-size: 3.5rem;
   color: #4a4e69;
   background: #22223b;
@@ -416,6 +417,10 @@ form fieldset input {
   align-items: center;
 }
 
+.record span {
+  text-shadow: none;
+}
+
 .moves {
   padding-right: 20px;
   position: absolute;
@@ -427,6 +432,7 @@ form fieldset input {
 
 .moveCount {
   color: #9a8c98;
+  text-shadow: none;
 }
 
 @media (max-width: 1500px) {
@@ -482,7 +488,7 @@ form fieldset input {
   form {
     position: absolute;
     top: 0;
-    right: -100%;
+    left: -100%;
     width: 100%;
     min-width: 0;
     transition: all 0.3s;
@@ -502,6 +508,12 @@ form fieldset input {
   }
   .results {
     margin-top: 15px;
+  }
+  .results .record {
+    padding-left: 10px;
+  }
+  .results .moves {
+    padding-right: 10px;
   }
 }
 

@@ -74,6 +74,7 @@ form {
 
 .results {
     margin-top: 30px;
+    padding: 5px 0;
     font-size: 3.5rem;
     color: $primary;
     background: $secondary;
@@ -99,6 +100,10 @@ form {
     height: 100%;
     display: flex;
     align-items: center;
+
+    span {
+        text-shadow: none;
+    }
 }
 
 .moves {
@@ -112,6 +117,7 @@ form {
 
 .moveCount {
     color: #9a8c98;
+    text-shadow: none;
 }
 
 //////////////////////
@@ -189,13 +195,12 @@ form {
     form {
         position: absolute;
         top: 0;
-        right: -100%;
+        left: -100%;
         width: 100%;
         min-width: 0;
         transition: all 0.3s;
         border-radius: 0;
         font-size: 1.8rem;
-
         fieldset {
             padding: 10px 5px;
             
@@ -214,6 +219,14 @@ form {
 
     .results {
         margin-top: 15px;
+
+        .record {
+            padding-left: 10px;
+        }
+
+        .moves {
+            padding-right: 10px;
+        }
     }
 }
 
