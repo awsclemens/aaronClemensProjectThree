@@ -27,7 +27,7 @@ myPuzzle.tilesWide = 3;
 
 // set all records;
 myPuzzle.easyRecord = 50;
-myPuzzle.mediumRecord = 75;
+myPuzzle.normalRecord = 75;
 myPuzzle.hardRecord = 100; 
 
 
@@ -47,13 +47,16 @@ myPuzzle.setCurrentTileOrder = function() {
     console.log(`tiles wide: ${myPuzzle.tilesWide}`);
     if (myPuzzle.tilesWide === 3) {
         myPuzzle.currentTileOrder = [4, 8, 3, 1, 6, 7, 5, 2, 9];
+        $('.record span').text(myPuzzle.easyRecord);
         return myPuzzle.currentTileOrder;
     } else if (myPuzzle.tilesWide === 4) {
         myPuzzle.currentTileOrder = [6, 10, 4, 14, 7, 12, 13, 5, 2, 11, 15, 1, 9, 3, 8, 16];
+        $('.record span').text(myPuzzle.normalRecord);
         return myPuzzle.currentTileOrder;
     } else if (myPuzzle.tilesWide === 5) {
         myPuzzle.currentTileOrder = [11, 1, 7, 4, 5, 6, 17, 2, 9, 10, 23, 13, 22, 14, 15, 21, 18, 3, 24, 19, 12, 8, 16, 20, 25];
         console.log(`set tile order: ${myPuzzle.currentTileOrder}`);
+        $('.record span').text(myPuzzle.hardRecord);
         return myPuzzle.currentTileOrder;
     }
     
@@ -252,6 +255,8 @@ myPuzzle.moveTiles = function() {
         
     });
 }
+
+
 
 myPuzzle.loadGame = function () {
     myPuzzle.createWinCondition();
