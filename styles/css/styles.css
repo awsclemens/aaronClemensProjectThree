@@ -328,6 +328,34 @@ main {
   position: relative;
 }
 
+.achievement {
+  padding: 40px;
+  text-align: center;
+  background: #22223b;
+  color: #9a8c98;
+  position: absolute;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  transition: all 0.5s;
+  display: none;
+}
+
+.achievement h2 {
+  color: gold;
+  text-decoration: underline;
+  font-size: 6rem;
+}
+
+.achievement h3 {
+  font-size: 5rem;
+}
+
+.achievement p {
+  font-size: 2.4rem;
+}
+
 form {
   margin: 0 auto 30px auto;
   padding: 10px 0;
@@ -456,6 +484,15 @@ form fieldset input {
 }
 
 @media (max-width: 1500px) {
+  .achievement h2 {
+    font-size: calc((45/10 * 1rem) + (100vw - (320*1px))*((60 - 45)/(1500 - 320)));
+  }
+  .achievement h3 {
+    font-size: calc((24/10 * 1rem) + (100vw - (320*1px))*((50 - 24)/(1500 - 320)));
+  }
+  .achievement p {
+    font-size: calc((18/10 * 1rem) + (100vw - (320*1px))*((24 - 18)/(1500 - 320)));
+  }
   .goalImageContainer {
     width: calc((288/10 * 1rem) + (100vw - (941*1px))*((480 - 288)/(1500 - 941)));
   }

@@ -25,9 +25,9 @@ myPuzzle.photoIdArray = [
 myPuzzle.tilesWide = 3;
 
 // set all records;
-myPuzzle.easyRecord = 100;
-myPuzzle.normalRecord = 200;
-myPuzzle.hardRecord = 500; 
+myPuzzle.easyRecord = 50;
+myPuzzle.normalRecord = 100;
+myPuzzle.hardRecord = 200; 
 
 
 // the win condition
@@ -46,7 +46,7 @@ myPuzzle.setCurrentTileOrder = function() {
     console.log(`tiles wide: ${myPuzzle.tilesWide}`);
     if (myPuzzle.tilesWide === 3) {
         myPuzzle.currentTileOrder = [7, 5, 8, 6, 2, 4, 1, 3, 9];
-        if (myPuzzle.easyRecord < 100){
+        if (myPuzzle.easyRecord < 50){
             $('.record span').text(myPuzzle.easyRecord).css("color","gold");
         } else {
             $('.record span').text(myPuzzle.easyRecord).css("color","#9a8c98");
@@ -54,7 +54,7 @@ myPuzzle.setCurrentTileOrder = function() {
         return myPuzzle.currentTileOrder;
     } else if (myPuzzle.tilesWide === 4) {
         myPuzzle.currentTileOrder = [13, 5, 14, 9, 3, 10, 4, 7, 2, 15, 12, 6,11, 1, 8, 16];
-        if (myPuzzle.normalRecord < 200){
+        if (myPuzzle.normalRecord < 100){
             $('.record span').text(myPuzzle.normalRecord).css("color","gold");
         } else {
             $('.record span').text(myPuzzle.normalRecord).css("color","#9a8c98");
@@ -62,7 +62,7 @@ myPuzzle.setCurrentTileOrder = function() {
         return myPuzzle.currentTileOrder;
     } else if (myPuzzle.tilesWide === 5) {
         myPuzzle.currentTileOrder = [18, 9, 20,11, 15, 21, 17, 10, 2, 24, 4, 23, 8, 19, 5, 22, 1, 7, 14, 12, 6, 16, 13, 3, 25];
-        if (myPuzzle.hardRecord < 500){
+        if (myPuzzle.hardRecord < 200){
             $('.record span').text(myPuzzle.hardRecord).css("color","gold");
         } else {
             $('.record span').text(myPuzzle.hardRecord).css("color","#9a8c98");
@@ -214,6 +214,16 @@ myPuzzle.windowResize = function() {
     });
 }
 
+// hidden achievement method
+myPuzzle.hiddenAchievement = function() {
+    if (myPuzzle.easyRecord < 50 && myPuzzle.normalRecord < 100 && myPuzzle.hardRecord < 200) {
+        $('.achievement').css('display','initial');
+    }
+    $('.achievement').on('click', function() {
+        $(this).css('display', 'none');
+    })
+} 
+
 // check for a new record
 myPuzzle.checkNewRecord = function() {
     const userMoveCount = parseInt($('.moveCount').text());
@@ -239,6 +249,7 @@ myPuzzle.checkNewRecord = function() {
         // message
     }
     // hidden achievement
+    myPuzzle.hiddenAchievement();
 }
 
 // check win condition method

@@ -5,6 +5,34 @@ main {
     position: relative;
 }
 
+.achievement {
+    padding: 40px;
+    text-align: center;
+    background: $secondary;
+    color: $primary;
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    transition: all 0.5s; 
+    display:none;
+
+    h2 {
+        color: gold;
+        text-decoration: underline;
+        font-size: 6rem;
+    }
+
+    h3 {
+        font-size: 5rem;
+    }
+
+    p {
+        font-size: 2.4rem;
+    }
+}
+
 form {
     margin: 0 auto 30px auto;
     padding: 10px 0;
@@ -138,6 +166,21 @@ form {
 
 // main DESKTOP @ wrapper stop width //
 @media (max-width: 1500px) {
+    .achievement {
+
+        h2 {
+            @include variableFontSize(45, 320, 60, 1500);
+        }
+
+        h3 {
+            @include variableFontSize(24, 320, 50, 1500);
+        }
+
+        p {
+            @include variableFontSize(18, 320, 24, 1500);
+        }
+    }
+
     .goalImageContainer {
         @include variableWidth(288, 941, 480, 1500);
     }
