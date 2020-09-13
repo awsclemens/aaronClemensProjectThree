@@ -81,6 +81,7 @@ form {
     text-shadow: 1px 1px $accent;
     height: 60px;
     display: flex;
+    flex-direction: column;
     justify-content: space-around;
     align-items: center;
     position: relative;
@@ -100,6 +101,7 @@ form {
     height: 100%;
     display: flex;
     align-items: center;
+    line-height: 1;
 
     span {
         text-shadow: none;
@@ -113,6 +115,7 @@ form {
     height: 100%;
     display: flex;
     align-items: center;
+    line-height: 1;
 }
 
 .moveCount {
@@ -179,7 +182,7 @@ form {
         @include variableFontSize(18, 320, 35, 768);
 
         h2 {
-            @include variableFontSize(25, 320, 35, 768);
+            @include variableFontSize(20, 320, 35, 768);
         }
     }
 
@@ -219,13 +222,14 @@ form {
 
     .results {
         margin-top: 5px;
+        padding: 8px 0;
 
         .record {
-            padding-left: 10px;
+            padding-left: 8px;
         }
 
         .moves {
-            padding-right: 10px;
+            padding-right: 8px;
         }
     }
 }

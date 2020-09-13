@@ -396,6 +396,7 @@ form fieldset input {
   text-shadow: 1px 1px #9a8c98;
   height: 60px;
   display: flex;
+  flex-direction: column;
   justify-content: space-around;
   align-items: center;
   position: relative;
@@ -415,6 +416,7 @@ form fieldset input {
   height: 100%;
   display: flex;
   align-items: center;
+  line-height: 1;
 }
 
 .record span {
@@ -428,6 +430,7 @@ form fieldset input {
   height: 100%;
   display: flex;
   align-items: center;
+  line-height: 1;
 }
 
 .moveCount {
@@ -477,7 +480,7 @@ form fieldset input {
     font-size: calc((18/10 * 1rem) + (100vw - (320*1px))*((35 - 18)/(768 - 320)));
   }
   .results h2 {
-    font-size: calc((25/10 * 1rem) + (100vw - (320*1px))*((35 - 25)/(768 - 320)));
+    font-size: calc((20/10 * 1rem) + (100vw - (320*1px))*((35 - 20)/(768 - 320)));
   }
 }
 
@@ -508,12 +511,13 @@ form fieldset input {
   }
   .results {
     margin-top: 5px;
+    padding: 8px 0;
   }
   .results .record {
-    padding-left: 10px;
+    padding-left: 8px;
   }
   .results .moves {
-    padding-right: 10px;
+    padding-right: 8px;
   }
 }
 
