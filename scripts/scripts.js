@@ -309,7 +309,7 @@ myPuzzle.resetGame = function() {
 }
 
 myPuzzle.slidingMenu = function() {
-    $('.fa-th').on('click', function() {
+    $('.slidingMenu').on('click', function() {
         if ($('form').css("left") === "0px") {
             $('form').css("left","-100%");
         } else {
