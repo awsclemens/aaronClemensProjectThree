@@ -54,7 +54,7 @@ form {
 }
 
 .tile {
-    border: 1px solid white;
+    
     position: absolute;
     display: flex;
     justify-content: center;
@@ -65,11 +65,10 @@ form {
 }
 
 .emptyTile {
-    border: 1px solid white;
+    
     position: absolute;
     z-index: -1;
     transition: none;
-    // background: lighten($primary, 20);
 }
 
 .results {

@@ -370,7 +370,6 @@ form fieldset input {
 }
 
 .tile {
-  border: 1px solid white;
   position: absolute;
   display: flex;
   justify-content: center;
@@ -381,7 +380,6 @@ form fieldset input {
 }
 
 .emptyTile {
-  border: 1px solid white;
   position: absolute;
   z-index: -1;
   transition: none;
@@ -511,10 +509,6 @@ form fieldset input {
   }
   .results {
     margin-top: 5px;
-<<<<<<< HEAD
-    padding: 8px 0;
-=======
->>>>>>> gh-pages
   }
   .results .record {
     padding-left: 8px;
@@ -544,9 +538,6 @@ footer {
 @media (max-width: 480px) {
   footer {
     margin-top: 0;
-<<<<<<< HEAD
     padding: 5px 0;
-=======
->>>>>>> gh-pages
   }
 }
