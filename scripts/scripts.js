@@ -159,26 +159,46 @@ myPuzzle.displayEmpty = function() {
     
 }
 
+// check tile above empty and set to active - method
+myPuzzle.checkTopTile = function(empty) {
+    if (empty > myPuzzle.tilesWide) {
+        $(`.slot${empty - myPuzzle.tilesWide}`).addClass('active');
+    }
+}
+
+// check tile to right of emtpy and set to active - method
+myPuzzle.checkRightTile = function(empty) {
+    if (empty % myPuzzle.tilesWide != 0) {
+        $(`.slot${empty + 1}`).addClass('active');
+    } 
+}
+
+// check tile to bottom of empty and set to active - method
+myPuzzle.checkBottomTile = function(empty) {
+    if (empty < myPuzzle.tilesWide**2 - (myPuzzle.tilesWide - 1)) {
+        $(`.slot${empty + myPuzzle.tilesWide}`).addClass('active');
+    }
+}
+
+// check tile to left of empty and set to active - method
+myPuzzle.checkLeftTile = function(empty) {
+    if (empty % myPuzzle.tilesWide != 1) {
+        $(`.slot${empty - 1}`).addClass('active');
+    }
+}
+
 // set which tiles are active
 myPuzzle.setActiveTiles = function() {
-    const $emptyVal = $('.emptyTile').val();
+    const $emptyVal = parseInt($('.emptyTile').val());
     console.log("set active tiles");
     // check and set top of empty tile
-    if ($emptyVal > myPuzzle.tilesWide) {
-        $(`.slot${$emptyVal - myPuzzle.tilesWide}`).addClass('active');
-    }
+    myPuzzle.checkTopTile($emptyVal);
     // check and set right of empty tile
-    if ($emptyVal % myPuzzle.tilesWide != 0) {
-        $(`.slot${$emptyVal + 1}`).addClass('active');
-    }
+    myPuzzle.checkRightTile($emptyVal); 
     // check and set bottom of empty tile
-    if ($emptyVal < myPuzzle.tilesWide**2 - (myPuzzle.tilesWide - 1)) {
-        $(`.slot${$emptyVal + myPuzzle.tilesWide}`).addClass('active');
-    }
+    myPuzzle.checkBottomTile($emptyVal);
     // check and set left of empty tile
-    if ($emptyVal % myPuzzle.tilesWide != 1) {
-        $(`.slot${$emptyVal - 1}`).addClass('active');
-    }
+    myPuzzle.checkLeftTile($emptyVal);
 }
 
 // create the game tiles, position them, and position their background photo
