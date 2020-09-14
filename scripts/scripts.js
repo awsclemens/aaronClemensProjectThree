@@ -25,11 +25,14 @@ myPuzzle.photoIdArray = [
 myPuzzle.tilesWide = 3;
 
 // set all records;
-myPuzzle.easyRecord = 50;
+myPuzzle.easyRecord = 40;
 myPuzzle.normalRecord = 90;
 myPuzzle.hardRecord = 200; 
+myPuzzle.userEasyRecord = myPuzzle.easyRecord;
+myPuzzle.userNormalRecord = myPuzzle.normalRecord;
+myPuzzle.userHardRecord = myPuzzle.hardRecord;
 
-// the win condition
+// set the win condition
 myPuzzle.winCondition =""
 
 // fill in the win condition
@@ -45,26 +48,26 @@ myPuzzle.setCurrentTileOrder = function() {
     console.log(`tiles wide: ${myPuzzle.tilesWide}`);
     if (myPuzzle.tilesWide === 3) {
         myPuzzle.currentTileOrder = [7, 5, 8, 6, 2, 4, 1, 3, 9];
-        if (myPuzzle.easyRecord < 50){
-            $record.text(myPuzzle.easyRecord).css("color","gold");
+        if (myPuzzle.userEasyRecord < myPuzzle.easyRecord){
+            $record.text(myPuzzle.userEasyRecord).css("color","gold");
         } else {
-            $record.text(myPuzzle.easyRecord).css("color","#9a8c98");
+            $record.text(myPuzzle.userEasyRecord).css("color","#9a8c98");
         }
         return myPuzzle.currentTileOrder;
     } else if (myPuzzle.tilesWide === 4) {
         myPuzzle.currentTileOrder = [13, 5, 14, 9, 3, 10, 4, 7, 2, 15, 12, 6,11, 1, 8, 16];
-        if (myPuzzle.normalRecord < 90){
-            $record.text(myPuzzle.normalRecord).css("color","gold");
+        if (myPuzzle.userNormalRecord < myPuzzle.normalRecord){
+            $record.text(myPuzzle.userNormalRecord).css("color","gold");
         } else {
-            $record.text(myPuzzle.normalRecord).css("color","#9a8c98");
+            $record.text(myPuzzle.userNormalRecord).css("color","#9a8c98");
         }
         return myPuzzle.currentTileOrder;
     } else if (myPuzzle.tilesWide === 5) {
         myPuzzle.currentTileOrder = [18, 9, 20,11, 15, 21, 17, 10, 2, 24, 4, 23, 8, 19, 5, 22, 1, 7, 14, 12, 6, 16, 13, 3, 25];
-        if (myPuzzle.hardRecord < 200){
-            $record.text(myPuzzle.hardRecord).css("color","gold");
+        if (myPuzzle.userHardRecord < myPuzzle.hardRecord){
+            $record.text(myPuzzle.userHardRecord).css("color","gold");
         } else {
-            $record.text(myPuzzle.hardRecord).css("color","#9a8c98");
+            $record.text(myPuzzle.userHardRecord).css("color","#9a8c98");
         }
         return myPuzzle.currentTileOrder;
     }
@@ -228,25 +231,22 @@ myPuzzle.hiddenAchievement = function() {
 myPuzzle.checkNewRecord = function() {
     const userMoveCount = parseInt($('.moveCount').text());
     if (myPuzzle.tilesWide === 3 && userMoveCount < myPuzzle.easyRecord) {
-        myPuzzle.easyRecord = userMoveCount;
-        $('.record span').text(myPuzzle.easyRecord).css("color","gold");
+        myPuzzle.userEasyRecord = userMoveCount;
+        $record.text(myPuzzle.userEasyRecord).css("color","gold");
         alert(`Congratulations! It's a new record!
-        ${myPuzzle.easyRecord} moves for: easy difficulty`);
-        // message
+        ${myPuzzle.userEasyRecord} moves for: easy difficulty`);
     }
     if (myPuzzle.tilesWide === 4 && userMoveCount < myPuzzle.normalRecord) {
-        myPuzzle.normalRecord = userMoveCount;
-        $('.record span').text(myPuzzle.normalRecord).css("color","gold");
+        myPuzzle.userNormalRecord = userMoveCount;
+        $record.text(myPuzzle.userNormalRecord).css("color","gold");
         alert(`Congratulations! It's a new record!
-        ${myPuzzle.normalRecord} moves for: normal difficulty`);
-        // message
+        ${myPuzzle.userNormalRecord} moves for: normal difficulty`);
     }
     if (myPuzzle.tilesWide === 5 && userMoveCount < myPuzzle.hardRecord) {
-        myPuzzle.hardRecord = userMoveCount;
-        $('.record span').text(myPuzzle.hardRecord).css("color","gold");
+        myPuzzle.userHardRecord = userMoveCount;
+        $record.text(myPuzzle.userHardRecord).css("color","gold");
         alert(`Congratulations! It's a new record!
-        ${myPuzzle.hardRecord} moves for: hard difficulty`);
-        // message
+        ${myPuzzle.userHardRecord} moves for: hard difficulty`);
     }
     // hidden achievement
     myPuzzle.hiddenAchievement();
