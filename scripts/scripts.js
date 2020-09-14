@@ -1,7 +1,7 @@
 // cached selectors
 const $goalImage = $('.goalImageContainer img');
 const $gameBoard = $('.gameBoard');
-
+const $record = $('.record span');
 
 // namespace object //
 const myPuzzle = {};
@@ -26,9 +26,8 @@ myPuzzle.tilesWide = 3;
 
 // set all records;
 myPuzzle.easyRecord = 50;
-myPuzzle.normalRecord = 100;
+myPuzzle.normalRecord = 90;
 myPuzzle.hardRecord = 200; 
-
 
 // the win condition
 myPuzzle.winCondition =""
@@ -47,38 +46,39 @@ myPuzzle.setCurrentTileOrder = function() {
     if (myPuzzle.tilesWide === 3) {
         myPuzzle.currentTileOrder = [7, 5, 8, 6, 2, 4, 1, 3, 9];
         if (myPuzzle.easyRecord < 50){
-            $('.record span').text(myPuzzle.easyRecord).css("color","gold");
+            $record.text(myPuzzle.easyRecord).css("color","gold");
         } else {
-            $('.record span').text(myPuzzle.easyRecord).css("color","#9a8c98");
+            $record.text(myPuzzle.easyRecord).css("color","#9a8c98");
         }
         return myPuzzle.currentTileOrder;
     } else if (myPuzzle.tilesWide === 4) {
         myPuzzle.currentTileOrder = [13, 5, 14, 9, 3, 10, 4, 7, 2, 15, 12, 6,11, 1, 8, 16];
-        if (myPuzzle.normalRecord < 100){
-            $('.record span').text(myPuzzle.normalRecord).css("color","gold");
+        if (myPuzzle.normalRecord < 90){
+            $record.text(myPuzzle.normalRecord).css("color","gold");
         } else {
-            $('.record span').text(myPuzzle.normalRecord).css("color","#9a8c98");
+            $record.text(myPuzzle.normalRecord).css("color","#9a8c98");
         }
         return myPuzzle.currentTileOrder;
     } else if (myPuzzle.tilesWide === 5) {
         myPuzzle.currentTileOrder = [18, 9, 20,11, 15, 21, 17, 10, 2, 24, 4, 23, 8, 19, 5, 22, 1, 7, 14, 12, 6, 16, 13, 3, 25];
         if (myPuzzle.hardRecord < 200){
-            $('.record span').text(myPuzzle.hardRecord).css("color","gold");
+            $record.text(myPuzzle.hardRecord).css("color","gold");
         } else {
-            $('.record span').text(myPuzzle.hardRecord).css("color","#9a8c98");
+            $record.text(myPuzzle.hardRecord).css("color","#9a8c98");
         }
         return myPuzzle.currentTileOrder;
     }
 }
 
-// helper methods
+// get random index of array method
 myPuzzle.randomIndex = function(array) {
     const randomNum = Math.floor(Math.random() * array.length);
     return array[randomNum];
 }
 
-// call our randomIndex helper method on photoIdArray and set it to namespace property
+// chhose the game photo method
 myPuzzle.choosePhoto = function() {
+    // get random index of of photoIdArray and save 
     myPuzzle.chosenPhoto = myPuzzle.randomIndex(myPuzzle.photoIdArray);
     // add our chosen photo's id to the picsum url and save as property in namespace
     myPuzzle.photoUrl = `https://picsum.photos/id/${myPuzzle.chosenPhoto.id}/600/600`;
@@ -280,8 +280,8 @@ myPuzzle.addMovesCount = function() {
 
 myPuzzle.moveTiles = function() {
     // on click of active tile,
-    $('.gameBoard').on('click', '.active', function() {
-        // add 1 to mouvesCount
+    $gameBoard.on('click', '.active', function() {
+        // add 1 to movesCount
         myPuzzle.addMovesCount();
         // save position and value of clicked active tile
         const clickedTileTop = $(this).css("top");
@@ -297,8 +297,7 @@ myPuzzle.moveTiles = function() {
         // remove all actives
         $('li').removeClass('active');
         // check win condition
-        myPuzzle.checkWinCondition()
-        
+        myPuzzle.checkWinCondition();
     });
 }
 
@@ -315,7 +314,7 @@ myPuzzle.resetGame = function() {
         const userChoice = $(this).find(':checked');
         console.log(userChoice);
         myPuzzle.tilesWide = parseInt(userChoice.val());
-        $('.gameBoard').empty();
+        $gameBoard.empty();
         $('.win').empty();
         $('.moveCount').text(0);
         myPuzzle.winCondition="";
@@ -334,7 +333,6 @@ myPuzzle.slidingMenu = function() {
     })
 }
 
-/////////////////////////////////////////////////////////////////////
 // define init method
 myPuzzle.init = function() {
     console.log("initialized");
