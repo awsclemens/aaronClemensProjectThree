@@ -18,7 +18,9 @@ myPuzzle.photoIdArray = [
     {id: 348, alt: "view of stairs and escalators in busy mall, many people are motion blurred"},
     {id: 392, alt: "the Golden Gate Bridge at dusk"},
     {id: 397, alt: "many colourful houses adorning steep oceanside cliffs, on a sunny day"},
-    {id: 111, alt: "close up of an old car with a California 1938 license plate on front right bumper that says farmer boy, a white stone building in background"}
+    {id: 111, alt: "close up of an old car with a California 1938 license plate on front right bumper that says farmer boy, a white stone building in background"},
+    {id: 237, alt: "black lab puppy on a wood floor looking into camera"}
+
 ];
 
 // set how many tiles wide our game will be: WILL BE USER CHOICE IN FUTURE
