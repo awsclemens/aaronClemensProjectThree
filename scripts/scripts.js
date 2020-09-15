@@ -25,24 +25,22 @@ myPuzzle.photoIdArray = [
 myPuzzle.tilesWide = 3;
 
 // set all records;
-myPuzzle.easyRecord = 40;
-myPuzzle.normalRecord = 90;
+myPuzzle.easyRecord = 40; 
+myPuzzle.normalRecord = 90; 
 myPuzzle.hardRecord = 200; 
 myPuzzle.userEasyRecord = myPuzzle.easyRecord;
 myPuzzle.userNormalRecord = myPuzzle.normalRecord;
 myPuzzle.userHardRecord = myPuzzle.hardRecord;
 
 // set the win condition
-myPuzzle.winCondition =""
+myPuzzle.winCondition = "";
+myPuzzle.checkWin = "";
 
 // get random index of array method
 myPuzzle.randomIndex = function(array) {
     const randomNum = Math.floor(Math.random() * array.length);
     return array[randomNum];
 }
-
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 // load game method //
 myPuzzle.loadGame = function () {
@@ -53,14 +51,14 @@ myPuzzle.loadGame = function () {
     myPuzzle.buildGame();
 }
 
-    // fill in the win condition
+    // create win condition method
     myPuzzle.createWinCondition = function() {
         for (i = 1; i <= myPuzzle.tilesWide**2; i++) {
             myPuzzle.winCondition = myPuzzle.winCondition + i;
         }
     }
 
-    // choose the game photo method
+    // choose photo method
     myPuzzle.choosePhoto = function() {
         // get random index of of photoIdArray and save 
         myPuzzle.chosenPhoto = myPuzzle.randomIndex(myPuzzle.photoIdArray);
@@ -68,12 +66,12 @@ myPuzzle.loadGame = function () {
         myPuzzle.photoUrl = `https://picsum.photos/id/${myPuzzle.chosenPhoto.id}/600/600`;
     }
 
-    // set the goal image and its alt text
+    // set goal image method
     myPuzzle.setGoalImage = function() {
         $goalImage.attr('src',`${myPuzzle.photoUrl}`).attr('alt',`${myPuzzle.chosenPhoto.alt}`);
     }
 
-    // the current order of tiles, starts scrambled
+    // set initial tile order method
     myPuzzle.setInitialTileOrder = function() {
         if (myPuzzle.tilesWide === 3) {
             myPuzzle.currentTileOrder = [7, 5, 8, 6, 2, 4, 1, 3, 9];
@@ -102,7 +100,7 @@ myPuzzle.loadGame = function () {
         }
     }
 
-    // create the game tiles, position them, and position their background photo
+    // build game method
     myPuzzle.buildGame = function() {
         // get the current width of the game board
         myPuzzle.getGameBoardSize();
@@ -116,28 +114,27 @@ myPuzzle.loadGame = function () {
         myPuzzle.setActiveTiles();
     }
 
-        // get the current game board size
+        // get game board size method
         myPuzzle.getGameBoardSize = function() {
             myPuzzle.gameBoardSize = parseInt($gameBoard.css('width')) - 4;
             return myPuzzle.gameBoardSize;
         }
 
-        // get the current tile size
+        // get tile size method
         myPuzzle.getTileSize = function() {
             myPuzzle.tileSize = (myPuzzle.gameBoardSize / myPuzzle.tilesWide);
             return myPuzzle.tileSize;
         }
 
-        // display tiles as li's in the ol with class gameBoard
+        // display tiles method
         myPuzzle.displayTiles = function() {
-            // create the tiles
             myPuzzle.createTiles();
             myPuzzle.setTileSize();
             myPuzzle.setTilePosition();
             myPuzzle.setTileBackgroundPos();
         }
 
-            // create the tiles method
+            // create tiles method
             myPuzzle.createTiles = function()  {
                 for (i = 0; i < myPuzzle.currentTileOrder.length; i++) {
                     const listItem = $('<li>');
@@ -148,12 +145,12 @@ myPuzzle.loadGame = function () {
                 }
             }
 
-            // set the tile size method
+            // set tile size method
             myPuzzle.setTileSize = function() {
                 $('li').css({"height":`${myPuzzle.tileSize}`,"width":`${myPuzzle.tileSize}`})
             }
 
-            // set the tile position method
+            // set tile position method
             myPuzzle.setTilePosition = function() {
                 for (i = 1; i <= myPuzzle.currentTileOrder.length; i++){
                     const tileTop = `${0 + (myPuzzle.tileSize)*(Math.floor((i - 1) / myPuzzle.tilesWide))}px`;
@@ -162,7 +159,7 @@ myPuzzle.loadGame = function () {
                 }   
             }
 
-            // set the tile background position method
+            // set tile background position method
             myPuzzle.setTileBackgroundPos = function() {
                 for (i = 0; i < myPuzzle.currentTileOrder.length; i++) {
                     const currentTile = myPuzzle.currentTileOrder[i]
@@ -172,14 +169,14 @@ myPuzzle.loadGame = function () {
                 }
             }
 
-        // adjust properties of the empty tile 
+        // disply empty method 
         myPuzzle.displayEmpty = function() {
             // select the last tile and add emptyTile class, and get rid of background image
             $(`.tile${myPuzzle.tilesWide**2}`).addClass("emptyTile").css("background-image","none");
             
         }
 
-        // set which tiles are active
+        // set active tiles method
         myPuzzle.setActiveTiles = function() {
             const $emptyVal = parseInt($('.emptyTile').val());
             // check and set top of empty tile
@@ -192,28 +189,28 @@ myPuzzle.loadGame = function () {
             myPuzzle.checkLeftTile($emptyVal);
         }
 
-            // check tile above empty and set to active - method
+            // check top tile (above empty) method
             myPuzzle.checkTopTile = function(empty) {
                 if (empty > myPuzzle.tilesWide) {
                     $(`.slot${empty - myPuzzle.tilesWide}`).addClass('active');
                 }
             }
 
-            // check tile to right of emtpy and set to active - method
+            // check right tile (beside empty) method
             myPuzzle.checkRightTile = function(empty) {
                 if (empty % myPuzzle.tilesWide != 0) {
                     $(`.slot${empty + 1}`).addClass('active');
                 } 
             }
 
-            // check tile to bottom of empty and set to active - method
+            // check bottom tile (below empty) method
             myPuzzle.checkBottomTile = function(empty) {
                 if (empty < myPuzzle.tilesWide**2 - (myPuzzle.tilesWide - 1)) {
                     $(`.slot${empty + myPuzzle.tilesWide}`).addClass('active');
                 }
             }
 
-            // check tile to left of empty and set to active - method
+            // check left tile (beside empty) method
             myPuzzle.checkLeftTile = function(empty) {
                 if (empty % myPuzzle.tilesWide != 1) {
                     $(`.slot${empty - 1}`).addClass('active');
@@ -281,19 +278,14 @@ myPuzzle.moveTiles = function() {
     // set current tile order method
     myPuzzle.setCurrentTileOrder = function() {
         for (i = 1; i <= myPuzzle.currentTileOrder.length; i++) {
-            const tileSlot = parseInt($(`.slot${i}`).text());
-            myPuzzle.currentTileOrder[i - 1] = tileSlot;
+            const tileSlot = $(`.slot${i}`).text();
+            myPuzzle.currentTileOrder[i - 1] = parseInt(tileSlot);
         } 
     }
 
     // check win condition method
     myPuzzle.checkWinCondition = function() {
-        myPuzzle.checkWin = ""; 
-        for (i = 1; i <= myPuzzle.tilesWide**2; i++) {
-            const tileSlotText = $(`.slot${i}`).text();
-            myPuzzle.checkWin = myPuzzle.checkWin + tileSlotText;
-        }
-        // if won, add message to results
+        myPuzzle.checkWin = myPuzzle.currentTileOrder.join(''); 
         if (myPuzzle.checkWin === myPuzzle.winCondition) {
             const winMessage = $('<h2>').text('You Win!');
             $('.emptyTile').css("background-image",`url(${myPuzzle.photoUrl})`);
@@ -340,19 +332,19 @@ myPuzzle.moveTiles = function() {
                 })
             }
 
-// event listener on window for resize, update the tile sizes and positioning //
+// window resize method //
 myPuzzle.windowResize = function() {
+    // event listener on window for resize, update the tile sizes and positioning 
     $(window).on('resize', function() {
         myPuzzle.getGameBoardSize();
         myPuzzle.getTileSize();
-        // myPuzzle.setCurrentTileOrder();
         myPuzzle.setTileSize();
         myPuzzle.setTilePosition();
         myPuzzle.setTileBackgroundPos();
     });
 }
 
-// define init method
+// init method
 myPuzzle.init = function() {
     myPuzzle.loadGame();
     myPuzzle.resetGame();
