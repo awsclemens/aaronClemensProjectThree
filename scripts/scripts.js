@@ -220,16 +220,25 @@ myPuzzle.loadGame = function () {
 // reset game method //
 myPuzzle.resetGame = function() {
     $('form').on('change', function() {
+        // update tiles wide with user choice from form
         const userChoice = $(this).find(':checked');
         myPuzzle.tilesWide = parseInt(userChoice.val());
+        // clear the game (board, win text, move count, win condition)
+        myPuzzle.clearBoard();
+        // re-load the game
+        myPuzzle.loadGame();
+        // uncheck user choice from form
+        userChoice.prop('checked',false);
+    });
+}
+
+    // clear board method
+    myPuzzle.clearBoard = function() {
         $gameBoard.empty();
         $('.win').empty();
         $('.moveCount').text(0);
         myPuzzle.winCondition="";
-        myPuzzle.loadGame();
-        userChoice.prop('checked',false);
-    });
-}
+    }
 
 // sliding menu method //
 myPuzzle.slidingMenu = function() {
@@ -287,10 +296,7 @@ myPuzzle.moveTiles = function() {
     myPuzzle.checkWinCondition = function() {
         myPuzzle.checkWin = myPuzzle.currentTileOrder.join(''); 
         if (myPuzzle.checkWin === myPuzzle.winCondition) {
-            const winMessage = $('<h2>').text('You Win!');
-            $('.emptyTile').css("background-image",`url(${myPuzzle.photoUrl})`);
-            $('.win').append(winMessage);
-            $('li').css('border','none');
+            myPuzzle.displayWin();
             myPuzzle.checkNewRecord();
         } else {
         // otherwise add new actives
@@ -298,21 +304,32 @@ myPuzzle.moveTiles = function() {
         }
     }   
 
+        // display win method
+        myPuzzle.displayWin = function() {
+            const winMessage = $('<h2>').text('You Win!');
+            $('.emptyTile').css("background-image",`url(${myPuzzle.photoUrl})`);
+            $('.win').append(winMessage);
+            $('li').css('border','none');
+        }
+
         // check for a new record
         myPuzzle.checkNewRecord = function() {
             const userMoveCount = parseInt($('.moveCount').text());
+            // check easy record
             if (myPuzzle.tilesWide === 3 && userMoveCount < myPuzzle.easyRecord) {
                 myPuzzle.userEasyRecord = userMoveCount;
                 $record.text(myPuzzle.userEasyRecord).css("color","gold");
                 alert(`Congratulations! It's a new record!
                 ${myPuzzle.userEasyRecord} moves for: easy difficulty`);
             }
+            // check normal record
             if (myPuzzle.tilesWide === 4 && userMoveCount < myPuzzle.normalRecord) {
                 myPuzzle.userNormalRecord = userMoveCount;
                 $record.text(myPuzzle.userNormalRecord).css("color","gold");
                 alert(`Congratulations! It's a new record!
                 ${myPuzzle.userNormalRecord} moves for: normal difficulty`);
             }
+            // check normal record
             if (myPuzzle.tilesWide === 5 && userMoveCount < myPuzzle.hardRecord) {
                 myPuzzle.userHardRecord = userMoveCount;
                 $record.text(myPuzzle.userHardRecord).css("color","gold");
