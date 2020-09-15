@@ -23,7 +23,7 @@ myPuzzle.photoIdArray = [
 
 ];
 
-// set how many tiles wide our game will be: WILL BE USER CHOICE IN FUTURE
+// set how many tiles wide our game will be at start
 myPuzzle.tilesWide = 3;
 
 // set all records;
