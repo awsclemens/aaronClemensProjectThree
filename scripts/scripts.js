@@ -75,28 +75,27 @@ myPuzzle.loadGame = function () {
     myPuzzle.setInitialTileOrder = function() {
         if (myPuzzle.tilesWide === 3) {
             myPuzzle.currentTileOrder = [7, 5, 8, 6, 2, 4, 1, 3, 9];
-            if (myPuzzle.userEasyRecord < myPuzzle.easyRecord){
-                $record.text(myPuzzle.userEasyRecord).css("color","gold");
-            } else {
-                $record.text(myPuzzle.userEasyRecord).css("color","#9a8c98");
-            }
-            return myPuzzle.currentTileOrder;
-        } else if (myPuzzle.tilesWide === 4) {
+            // update the easy record
+            myPuzzle.setUserRecord(myPuzzle.userEasyRecord, myPuzzle.easyRecord);
+        } 
+        if (myPuzzle.tilesWide === 4) {
             myPuzzle.currentTileOrder = [13, 5, 14, 9, 3, 10, 4, 7, 2, 15, 12, 6,11, 1, 8, 16];
-            if (myPuzzle.userNormalRecord < myPuzzle.normalRecord){
-                $record.text(myPuzzle.userNormalRecord).css("color","gold");
-            } else {
-                $record.text(myPuzzle.userNormalRecord).css("color","#9a8c98");
-            }
-            return myPuzzle.currentTileOrder;
-        } else if (myPuzzle.tilesWide === 5) {
+            // update the normal record
+            myPuzzle.setUserRecord(myPuzzle.userNormalRecord, myPuzzle.normalRecord);
+        }
+        if (myPuzzle.tilesWide === 5) {
             myPuzzle.currentTileOrder = [18, 9, 20,11, 15, 21, 17, 10, 2, 24, 4, 23, 8, 19, 5, 22, 1, 7, 14, 12, 6, 16, 13, 3, 25];
-            if (myPuzzle.userHardRecord < myPuzzle.hardRecord){
-                $record.text(myPuzzle.userHardRecord).css("color","gold");
-            } else {
-                $record.text(myPuzzle.userHardRecord).css("color","#9a8c98");
-            }
-            return myPuzzle.currentTileOrder;
+            // update the hard record
+            myPuzzle.setUserRecord(myPuzzle.userHardRecord, myPuzzle.hardRecord);
+        }
+    }
+
+    // set user record method
+    myPuzzle.setUserRecord = function(userRecord, Record) {
+        if (userRecord < Record){
+            $record.text(userRecord).css("color","gold");
+        } else {
+            $record.text(userRecord).css("color","#9a8c98");
         }
     }
 
@@ -153,6 +152,7 @@ myPuzzle.loadGame = function () {
             // set tile position method
             myPuzzle.setTilePosition = function() {
                 for (i = 1; i <= myPuzzle.currentTileOrder.length; i++){
+                    // sets the tile position based on its slot number
                     const tileTop = `${0 + (myPuzzle.tileSize)*(Math.floor((i - 1) / myPuzzle.tilesWide))}px`;
                     const tileLeft = `${0 + (myPuzzle.tileSize)*((i - 1) % myPuzzle.tilesWide)}px`;
                     $(`.slot${i}`).css({"top":`${tileTop}`,"left":`${tileLeft}`});
@@ -162,6 +162,7 @@ myPuzzle.loadGame = function () {
             // set tile background position method
             myPuzzle.setTileBackgroundPos = function() {
                 for (i = 0; i < myPuzzle.currentTileOrder.length; i++) {
+                    // sets the tile background position based on its tile order number
                     const currentTile = myPuzzle.currentTileOrder[i]
                     const tileBackgroundPosX = `${0 - (myPuzzle.tileSize)*((currentTile - 1) % myPuzzle.tilesWide)}px`;
                     const tileBackgroundPosY = `${0 - (myPuzzle.tileSize)*(Math.floor((currentTile - 1) / myPuzzle.tilesWide))}px`;
@@ -173,7 +174,6 @@ myPuzzle.loadGame = function () {
         myPuzzle.displayEmpty = function() {
             // select the last tile and add emptyTile class, and get rid of background image
             $(`.tile${myPuzzle.tilesWide**2}`).addClass("emptyTile").css("background-image","none");
-            
         }
 
         // set active tiles method
@@ -289,7 +289,8 @@ myPuzzle.moveTiles = function() {
         if (myPuzzle.checkWin === myPuzzle.winCondition) {
             const winMessage = $('<h2>').text('You Win!');
             $('.emptyTile').css("background-image",`url(${myPuzzle.photoUrl})`);
-            $('.win').append(winMessage)
+            $('.win').append(winMessage);
+            $('li').css('border','none');
             myPuzzle.checkNewRecord();
         } else {
         // otherwise add new actives
