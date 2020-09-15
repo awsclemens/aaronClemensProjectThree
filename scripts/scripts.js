@@ -53,171 +53,171 @@ myPuzzle.loadGame = function () {
     myPuzzle.buildGame();
 }
 
-    // create win condition method
-    myPuzzle.createWinCondition = function() {
-        for (i = 1; i <= myPuzzle.tilesWide**2; i++) {
-            myPuzzle.winCondition = myPuzzle.winCondition + i;
-        }
+// create win condition method
+myPuzzle.createWinCondition = function() {
+    for (i = 1; i <= myPuzzle.tilesWide**2; i++) {
+        myPuzzle.winCondition = myPuzzle.winCondition + i;
     }
+}
 
-    // choose photo method
-    myPuzzle.choosePhoto = function() {
-        // get random index of of photoIdArray and save 
-        myPuzzle.chosenPhoto = myPuzzle.randomIndex(myPuzzle.photoIdArray);
-        // add our chosen photo's id to the picsum url and save as property in namespace
-        myPuzzle.photoUrl = `https://picsum.photos/id/${myPuzzle.chosenPhoto.id}/600/600`;
+// choose photo method
+myPuzzle.choosePhoto = function() {
+    // get random index of of photoIdArray and save 
+    myPuzzle.chosenPhoto = myPuzzle.randomIndex(myPuzzle.photoIdArray);
+    // add our chosen photo's id to the picsum url and save as property in namespace
+    myPuzzle.photoUrl = `https://picsum.photos/id/${myPuzzle.chosenPhoto.id}/600/600`;
+}
+
+// set goal image method
+myPuzzle.setGoalImage = function() {
+    $goalImage.attr('src',`${myPuzzle.photoUrl}`).attr('alt',`${myPuzzle.chosenPhoto.alt}`);
+}
+
+// set initial tile order method
+myPuzzle.setInitialTileOrder = function() {
+    if (myPuzzle.tilesWide === 3) {
+        myPuzzle.currentTileOrder = [7, 5, 8, 6, 2, 4, 1, 3, 9];
+        // update the easy record
+        myPuzzle.setUserRecord(myPuzzle.userEasyRecord, myPuzzle.easyRecord);
+    } 
+    if (myPuzzle.tilesWide === 4) {
+        myPuzzle.currentTileOrder = [13, 5, 14, 9, 3, 10, 4, 7, 2, 15, 12, 6,11, 1, 8, 16];
+        // update the normal record
+        myPuzzle.setUserRecord(myPuzzle.userNormalRecord, myPuzzle.normalRecord);
     }
-
-    // set goal image method
-    myPuzzle.setGoalImage = function() {
-        $goalImage.attr('src',`${myPuzzle.photoUrl}`).attr('alt',`${myPuzzle.chosenPhoto.alt}`);
+    if (myPuzzle.tilesWide === 5) {
+        myPuzzle.currentTileOrder = [18, 9, 20,11, 15, 21, 17, 10, 2, 24, 4, 23, 8, 19, 5, 22, 1, 7, 14, 12, 6, 16, 13, 3, 25];
+        // update the hard record
+        myPuzzle.setUserRecord(myPuzzle.userHardRecord, myPuzzle.hardRecord);
     }
+}
 
-    // set initial tile order method
-    myPuzzle.setInitialTileOrder = function() {
-        if (myPuzzle.tilesWide === 3) {
-            myPuzzle.currentTileOrder = [7, 5, 8, 6, 2, 4, 1, 3, 9];
-            // update the easy record
-            myPuzzle.setUserRecord(myPuzzle.userEasyRecord, myPuzzle.easyRecord);
-        } 
-        if (myPuzzle.tilesWide === 4) {
-            myPuzzle.currentTileOrder = [13, 5, 14, 9, 3, 10, 4, 7, 2, 15, 12, 6,11, 1, 8, 16];
-            // update the normal record
-            myPuzzle.setUserRecord(myPuzzle.userNormalRecord, myPuzzle.normalRecord);
-        }
-        if (myPuzzle.tilesWide === 5) {
-            myPuzzle.currentTileOrder = [18, 9, 20,11, 15, 21, 17, 10, 2, 24, 4, 23, 8, 19, 5, 22, 1, 7, 14, 12, 6, 16, 13, 3, 25];
-            // update the hard record
-            myPuzzle.setUserRecord(myPuzzle.userHardRecord, myPuzzle.hardRecord);
-        }
+// set user record method
+myPuzzle.setUserRecord = function(userRecord, Record) {
+    if (userRecord < Record){
+        $record.text(userRecord).css("color","gold");
+    } else {
+        $record.text(userRecord).css("color","#9a8c98");
     }
+}
 
-    // set user record method
-    myPuzzle.setUserRecord = function(userRecord, Record) {
-        if (userRecord < Record){
-            $record.text(userRecord).css("color","gold");
-        } else {
-            $record.text(userRecord).css("color","#9a8c98");
-        }
+// build game method
+myPuzzle.buildGame = function() {
+    // get the current width of the game board
+    myPuzzle.getGameBoardSize();
+    // divide game board width by how many tiles wide the game is to get tile size
+    myPuzzle.getTileSize();
+    // disply all needed tiles
+    myPuzzle.displayTiles();
+    // change last tile to empty
+    myPuzzle.displayEmpty();
+    //set the active tiles
+    myPuzzle.setActiveTiles();
+}
+
+// get game board size method
+myPuzzle.getGameBoardSize = function() {
+    myPuzzle.gameBoardSize = parseInt($gameBoard.css('width')) - 4;
+    return myPuzzle.gameBoardSize;
+}
+
+// get tile size method
+myPuzzle.getTileSize = function() {
+    myPuzzle.tileSize = (myPuzzle.gameBoardSize / myPuzzle.tilesWide);
+    return myPuzzle.tileSize;
+}
+
+// display tiles method
+myPuzzle.displayTiles = function() {
+    myPuzzle.createTiles();
+    myPuzzle.setTileSize();
+    myPuzzle.setTilePosition();
+    myPuzzle.setTileBackgroundPos();
+}
+
+// create tiles method
+myPuzzle.createTiles = function()  {
+    for (i = 0; i < myPuzzle.currentTileOrder.length; i++) {
+        const listItem = $('<li>');
+        const currentTile = myPuzzle.currentTileOrder[i]
+        const tileClasses = `tile tile${currentTile} slot${i + 1}`
+        const tileBackgroundSize = `${100 * myPuzzle.tilesWide}%`;
+        $gameBoard.append(listItem.addClass(tileClasses).val(i + 1).css({"background-image":`url(${myPuzzle.photoUrl}`,"background-size":`${tileBackgroundSize}`,"background-repeat":"no-repeat"}).text(currentTile));
     }
+}
 
-    // build game method
-    myPuzzle.buildGame = function() {
-        // get the current width of the game board
-        myPuzzle.getGameBoardSize();
-        // divide game board width by how many tiles wide the game is to get tile size
-        myPuzzle.getTileSize();
-        // disply all needed tiles
-        myPuzzle.displayTiles();
-        // change last tile to empty
-        myPuzzle.displayEmpty();
-        //set the active tiles
-        myPuzzle.setActiveTiles();
+// set tile size method
+myPuzzle.setTileSize = function() {
+    $('li').css({"height":`${myPuzzle.tileSize}`,"width":`${myPuzzle.tileSize}`})
+}
+
+// set tile position method
+myPuzzle.setTilePosition = function() {
+    for (i = 1; i <= myPuzzle.currentTileOrder.length; i++){
+        // sets the tile position based on its slot number
+        const tileTop = `${0 + (myPuzzle.tileSize)*(Math.floor((i - 1) / myPuzzle.tilesWide))}px`;
+        const tileLeft = `${0 + (myPuzzle.tileSize)*((i - 1) % myPuzzle.tilesWide)}px`;
+        $(`.slot${i}`).css({"top":`${tileTop}`,"left":`${tileLeft}`});
+    }   
+}
+
+// set tile background position method
+myPuzzle.setTileBackgroundPos = function() {
+    for (i = 0; i < myPuzzle.currentTileOrder.length; i++) {
+        // sets the tile background position based on its tile order number
+        const currentTile = myPuzzle.currentTileOrder[i]
+        const tileBackgroundPosX = `${0 - (myPuzzle.tileSize)*((currentTile - 1) % myPuzzle.tilesWide)}px`;
+        const tileBackgroundPosY = `${0 - (myPuzzle.tileSize)*(Math.floor((currentTile - 1) / myPuzzle.tilesWide))}px`;
+        $(`.slot${i + 1}`).css({"background-position":`${tileBackgroundPosX} ${tileBackgroundPosY}`});
     }
+}
 
-        // get game board size method
-        myPuzzle.getGameBoardSize = function() {
-            myPuzzle.gameBoardSize = parseInt($gameBoard.css('width')) - 4;
-            return myPuzzle.gameBoardSize;
-        }
+// disply empty method 
+myPuzzle.displayEmpty = function() {
+    // select the last tile and add emptyTile class, and get rid of background image
+    $(`.tile${myPuzzle.tilesWide**2}`).addClass("emptyTile").css("background-image","none");
+}
 
-        // get tile size method
-        myPuzzle.getTileSize = function() {
-            myPuzzle.tileSize = (myPuzzle.gameBoardSize / myPuzzle.tilesWide);
-            return myPuzzle.tileSize;
-        }
+// set active tiles method
+myPuzzle.setActiveTiles = function() {
+    const $emptyVal = parseInt($('.emptyTile').val());
+    // check and set top of empty tile
+    myPuzzle.checkTopTile($emptyVal);
+    // check and set right of empty tile
+    myPuzzle.checkRightTile($emptyVal); 
+    // check and set bottom of empty tile
+    myPuzzle.checkBottomTile($emptyVal);
+    // check and set left of empty tile
+    myPuzzle.checkLeftTile($emptyVal);
+}
 
-        // display tiles method
-        myPuzzle.displayTiles = function() {
-            myPuzzle.createTiles();
-            myPuzzle.setTileSize();
-            myPuzzle.setTilePosition();
-            myPuzzle.setTileBackgroundPos();
-        }
+// check top tile (above empty) method
+myPuzzle.checkTopTile = function(empty) {
+    if (empty > myPuzzle.tilesWide) {
+        $(`.slot${empty - myPuzzle.tilesWide}`).addClass('active');
+    }
+}
 
-            // create tiles method
-            myPuzzle.createTiles = function()  {
-                for (i = 0; i < myPuzzle.currentTileOrder.length; i++) {
-                    const listItem = $('<li>');
-                    const currentTile = myPuzzle.currentTileOrder[i]
-                    const tileClasses = `tile tile${currentTile} slot${i + 1}`
-                    const tileBackgroundSize = `${100 * myPuzzle.tilesWide}%`;
-                    $gameBoard.append(listItem.addClass(tileClasses).val(i + 1).css({"background-image":`url(${myPuzzle.photoUrl}`,"background-size":`${tileBackgroundSize}`,"background-repeat":"no-repeat"}).text(currentTile));
-                }
-            }
+// check right tile (beside empty) method
+myPuzzle.checkRightTile = function(empty) {
+    if (empty % myPuzzle.tilesWide != 0) {
+        $(`.slot${empty + 1}`).addClass('active');
+    } 
+}
 
-            // set tile size method
-            myPuzzle.setTileSize = function() {
-                $('li').css({"height":`${myPuzzle.tileSize}`,"width":`${myPuzzle.tileSize}`})
-            }
+// check bottom tile (below empty) method
+myPuzzle.checkBottomTile = function(empty) {
+    if (empty < myPuzzle.tilesWide**2 - (myPuzzle.tilesWide - 1)) {
+        $(`.slot${empty + myPuzzle.tilesWide}`).addClass('active');
+    }
+}
 
-            // set tile position method
-            myPuzzle.setTilePosition = function() {
-                for (i = 1; i <= myPuzzle.currentTileOrder.length; i++){
-                    // sets the tile position based on its slot number
-                    const tileTop = `${0 + (myPuzzle.tileSize)*(Math.floor((i - 1) / myPuzzle.tilesWide))}px`;
-                    const tileLeft = `${0 + (myPuzzle.tileSize)*((i - 1) % myPuzzle.tilesWide)}px`;
-                    $(`.slot${i}`).css({"top":`${tileTop}`,"left":`${tileLeft}`});
-                }   
-            }
-
-            // set tile background position method
-            myPuzzle.setTileBackgroundPos = function() {
-                for (i = 0; i < myPuzzle.currentTileOrder.length; i++) {
-                    // sets the tile background position based on its tile order number
-                    const currentTile = myPuzzle.currentTileOrder[i]
-                    const tileBackgroundPosX = `${0 - (myPuzzle.tileSize)*((currentTile - 1) % myPuzzle.tilesWide)}px`;
-                    const tileBackgroundPosY = `${0 - (myPuzzle.tileSize)*(Math.floor((currentTile - 1) / myPuzzle.tilesWide))}px`;
-                    $(`.slot${i + 1}`).css({"background-position":`${tileBackgroundPosX} ${tileBackgroundPosY}`});
-                }
-            }
-
-        // disply empty method 
-        myPuzzle.displayEmpty = function() {
-            // select the last tile and add emptyTile class, and get rid of background image
-            $(`.tile${myPuzzle.tilesWide**2}`).addClass("emptyTile").css("background-image","none");
-        }
-
-        // set active tiles method
-        myPuzzle.setActiveTiles = function() {
-            const $emptyVal = parseInt($('.emptyTile').val());
-            // check and set top of empty tile
-            myPuzzle.checkTopTile($emptyVal);
-            // check and set right of empty tile
-            myPuzzle.checkRightTile($emptyVal); 
-            // check and set bottom of empty tile
-            myPuzzle.checkBottomTile($emptyVal);
-            // check and set left of empty tile
-            myPuzzle.checkLeftTile($emptyVal);
-        }
-
-            // check top tile (above empty) method
-            myPuzzle.checkTopTile = function(empty) {
-                if (empty > myPuzzle.tilesWide) {
-                    $(`.slot${empty - myPuzzle.tilesWide}`).addClass('active');
-                }
-            }
-
-            // check right tile (beside empty) method
-            myPuzzle.checkRightTile = function(empty) {
-                if (empty % myPuzzle.tilesWide != 0) {
-                    $(`.slot${empty + 1}`).addClass('active');
-                } 
-            }
-
-            // check bottom tile (below empty) method
-            myPuzzle.checkBottomTile = function(empty) {
-                if (empty < myPuzzle.tilesWide**2 - (myPuzzle.tilesWide - 1)) {
-                    $(`.slot${empty + myPuzzle.tilesWide}`).addClass('active');
-                }
-            }
-
-            // check left tile (beside empty) method
-            myPuzzle.checkLeftTile = function(empty) {
-                if (empty % myPuzzle.tilesWide != 1) {
-                    $(`.slot${empty - 1}`).addClass('active');
-                }
-            }
+// check left tile (beside empty) method
+myPuzzle.checkLeftTile = function(empty) {
+    if (empty % myPuzzle.tilesWide != 1) {
+        $(`.slot${empty - 1}`).addClass('active');
+    }
+}
 
 // reset game method //
 myPuzzle.resetGame = function() {
@@ -234,13 +234,13 @@ myPuzzle.resetGame = function() {
     });
 }
 
-    // clear board method
-    myPuzzle.clearBoard = function() {
-        $gameBoard.empty();
-        $('.win').empty();
-        $('.moveCount').text(0);
-        myPuzzle.winCondition="";
-    }
+// clear board method
+myPuzzle.clearBoard = function() {
+    $gameBoard.empty();
+    $('.win').empty();
+    $('.moveCount').text(0);
+    myPuzzle.winCondition="";
+}
 
 // sliding menu method //
 myPuzzle.slidingMenu = function() {
@@ -279,78 +279,78 @@ myPuzzle.moveTiles = function() {
     });
 }
 
-    // add to moves count method
-    myPuzzle.addMovesCount = function() {
-        const moves = parseInt($('.moveCount').text());
-        const updateMoves = moves + 1;
-        $('.moveCount').text(updateMoves);
+// add to moves count method
+myPuzzle.addMovesCount = function() {
+    const moves = parseInt($('.moveCount').text());
+    const updateMoves = moves + 1;
+    $('.moveCount').text(updateMoves);
+}
+
+// set current tile order method
+myPuzzle.setCurrentTileOrder = function() {
+    for (i = 1; i <= myPuzzle.currentTileOrder.length; i++) {
+        const tileSlot = $(`.slot${i}`).text();
+        myPuzzle.currentTileOrder[i - 1] = parseInt(tileSlot);
+    } 
+}
+
+// check win condition method
+myPuzzle.checkWinCondition = function() {
+    myPuzzle.checkWin = myPuzzle.currentTileOrder.join(''); 
+    if (myPuzzle.checkWin === myPuzzle.winCondition) {
+        myPuzzle.displayWin();
+        myPuzzle.checkNewRecord();
+    } else {
+    // otherwise add new actives
+    myPuzzle.setActiveTiles();
     }
+}   
 
-    // set current tile order method
-    myPuzzle.setCurrentTileOrder = function() {
-        for (i = 1; i <= myPuzzle.currentTileOrder.length; i++) {
-            const tileSlot = $(`.slot${i}`).text();
-            myPuzzle.currentTileOrder[i - 1] = parseInt(tileSlot);
-        } 
+// display win method
+myPuzzle.displayWin = function() {
+    const winMessage = $('<h2>').text('You Win!');
+    $('.emptyTile').css("background-image",`url(${myPuzzle.photoUrl})`);
+    $('.win').append(winMessage);
+    $('li').css('border','none');
+}
+
+// check for a new record
+myPuzzle.checkNewRecord = function() {
+    const userMoveCount = parseInt($('.moveCount').text());
+    // check easy record
+    if (myPuzzle.tilesWide === 3 && userMoveCount < myPuzzle.easyRecord) {
+        myPuzzle.userEasyRecord = userMoveCount;
+        $record.text(myPuzzle.userEasyRecord).css("color","gold");
+        alert(`Congratulations! It's a new record!
+        ${myPuzzle.userEasyRecord} moves for: easy difficulty`);
     }
+    // check normal record
+    if (myPuzzle.tilesWide === 4 && userMoveCount < myPuzzle.normalRecord) {
+        myPuzzle.userNormalRecord = userMoveCount;
+        $record.text(myPuzzle.userNormalRecord).css("color","gold");
+        alert(`Congratulations! It's a new record!
+        ${myPuzzle.userNormalRecord} moves for: normal difficulty`);
+    }
+    // check normal record
+    if (myPuzzle.tilesWide === 5 && userMoveCount < myPuzzle.hardRecord) {
+        myPuzzle.userHardRecord = userMoveCount;
+        $record.text(myPuzzle.userHardRecord).css("color","gold");
+        alert(`Congratulations! It's a new record!
+        ${myPuzzle.userHardRecord} moves for: hard difficulty`);
+    }
+    // hidden achievement
+    myPuzzle.hiddenAchievement();
+}
 
-    // check win condition method
-    myPuzzle.checkWinCondition = function() {
-        myPuzzle.checkWin = myPuzzle.currentTileOrder.join(''); 
-        if (myPuzzle.checkWin === myPuzzle.winCondition) {
-            myPuzzle.displayWin();
-            myPuzzle.checkNewRecord();
-        } else {
-        // otherwise add new actives
-        myPuzzle.setActiveTiles();
-        }
-    }   
-
-        // display win method
-        myPuzzle.displayWin = function() {
-            const winMessage = $('<h2>').text('You Win!');
-            $('.emptyTile').css("background-image",`url(${myPuzzle.photoUrl})`);
-            $('.win').append(winMessage);
-            $('li').css('border','none');
-        }
-
-        // check for a new record
-        myPuzzle.checkNewRecord = function() {
-            const userMoveCount = parseInt($('.moveCount').text());
-            // check easy record
-            if (myPuzzle.tilesWide === 3 && userMoveCount < myPuzzle.easyRecord) {
-                myPuzzle.userEasyRecord = userMoveCount;
-                $record.text(myPuzzle.userEasyRecord).css("color","gold");
-                alert(`Congratulations! It's a new record!
-                ${myPuzzle.userEasyRecord} moves for: easy difficulty`);
-            }
-            // check normal record
-            if (myPuzzle.tilesWide === 4 && userMoveCount < myPuzzle.normalRecord) {
-                myPuzzle.userNormalRecord = userMoveCount;
-                $record.text(myPuzzle.userNormalRecord).css("color","gold");
-                alert(`Congratulations! It's a new record!
-                ${myPuzzle.userNormalRecord} moves for: normal difficulty`);
-            }
-            // check normal record
-            if (myPuzzle.tilesWide === 5 && userMoveCount < myPuzzle.hardRecord) {
-                myPuzzle.userHardRecord = userMoveCount;
-                $record.text(myPuzzle.userHardRecord).css("color","gold");
-                alert(`Congratulations! It's a new record!
-                ${myPuzzle.userHardRecord} moves for: hard difficulty`);
-            }
-            // hidden achievement
-            myPuzzle.hiddenAchievement();
-        }
-
-            // hidden achievement method
-            myPuzzle.hiddenAchievement = function() {
-                if (myPuzzle.userEasyRecord < myPuzzle.easyRecord && myPuzzle.userNormalRecord < myPuzzle.normalRecord && myPuzzle.userHardRecord < myPuzzle.hardRecord) {
-                    $('.achievement').css('display','initial');
-                }
-                $('.achievement').on('click', function() {
-                    $(this).css('display', 'none');
-                })
-            }
+// hidden achievement method
+myPuzzle.hiddenAchievement = function() {
+    if (myPuzzle.userEasyRecord < myPuzzle.easyRecord && myPuzzle.userNormalRecord < myPuzzle.normalRecord && myPuzzle.userHardRecord < myPuzzle.hardRecord) {
+        $('.achievement').css('display','initial');
+    }
+    $('.achievement').on('click', function() {
+        $(this).css('display', 'none');
+    })
+}
 
 // window resize method //
 myPuzzle.windowResize = function() {
