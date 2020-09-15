@@ -24,7 +24,6 @@ $accent: #4a4e69;
     width: calc((#{$startWidth}/10 * 1rem) + (100vw - (#{$startScreenWidth}*1px))*((#{$endWidth} - #{$startWidth})/(#{$endScreenWidth} - #{$startScreenWidth})));
 }
 
-
 // variable height
 @mixin variableHeight($startWidth, $startScreenWidth, $endWidth, $endScreenWidth) {
     height: calc((#{$startWidth}/10 * 1rem) + (100vw - (#{$startScreenWidth}*1px))*((#{$endWidth} - #{$startWidth})/(#{$endScreenWidth} - #{$startScreenWidth})));

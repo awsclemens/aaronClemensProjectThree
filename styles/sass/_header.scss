@@ -7,13 +7,13 @@ header {
     justify-content: center;
     align-items: flex-end;
     position:relative;
-}
 
-h1 {
-    line-height: 1;
-    font-size: 5rem;
-    color: $secondary;
-    text-shadow: 3px 2px 1px $accent;
+    h1 {
+        line-height: 1;
+        font-size: 5rem;
+        color: $secondary;
+        text-shadow: 3px 2px 1px $accent;
+    }
 }
 
 .fa-th {
@@ -30,10 +30,9 @@ h1 {
     header {
         margin-top: 20px;
 
-    }
-
-    h1 {
-        @include variableFontSize(28, 320, 50, 768);
+        h1 {
+            @include variableFontSize(28, 320, 50, 768);
+        }
     }
 }
 
